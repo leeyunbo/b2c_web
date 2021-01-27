@@ -23,3 +23,5 @@ logging:
   level:
     #logger
     org.hibernate.SQL: debug
+    #각각 파라미터가 어디 어느 속성으로 들어갔는지 로그를 찍어줌 {1}은 memberName에 .. 이런식으로
+    org.hibernate.type: trace

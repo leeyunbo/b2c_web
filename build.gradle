@@ -22,6 +22,8 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// 파라미터에 어떤 데이터가 들어갔는지 로깅
+	implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.5.6'
 
 	// 자동 컴파일, 캐시 제거 (고친 파일만 컴파일하면 자동으로 재시작)
 	implementation 'org.springframework.boot:spring-boot-devtools'
