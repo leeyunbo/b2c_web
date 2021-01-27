@@ -1,0 +1,25 @@
+
+spring:
+  # datasource 설정
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/jpashop;MVCC=TRUE
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+# jpa 설정
+  jpa:
+    hibernate:
+      # 애플리케이션 실행시점에 엔티티 정보를 보고 테이블을 다 지우고 다시 생성
+      ddl-auto: create
+    properties:
+      hibernate:
+        #sytem.out
+        #show_sql: true
+        format_sql: true
+
+# log 설정
+logging:
+  level:
+    #logger
+    org.hibernate.SQL: debug
