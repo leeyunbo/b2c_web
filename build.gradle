@@ -25,6 +25,7 @@ dependencies {
 
 	// 자동 컴파일, 캐시 제거 (고친 파일만 컴파일하면 자동으로 재시작)
 	implementation 'org.springframework.boot:spring-boot-devtools'
+	implementation 'junit:junit:4.12'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.h2database:h2'
 	annotationProcessor 'org.projectlombok:lombok'
