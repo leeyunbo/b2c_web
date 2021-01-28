@@ -21,6 +21,7 @@ public class Member {
     @Embedded
     private Address address;
 
-    @OneToMany
+    // 연관관계 주인 X ORDER 테이블에 있는 member에 의해 매핑된다.
+    @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList();
 }
