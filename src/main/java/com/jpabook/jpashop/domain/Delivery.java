@@ -15,7 +15,7 @@ public class Delivery {
 
     // OneToOne 관계에서는 어디든 FK를 넣어도 상관이 없음
     // 보통 order에서 delivery를 찾으므로 order에다가 FK를 넣는다.
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(mappedBy = "delivery", fetch = FetchType.LAZY)
     private Order order;
 
     @Embedded
