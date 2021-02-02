@@ -2,6 +2,7 @@ package com.jpabook.jpashop.service;
 
 import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.repository.MemberRepository;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +25,6 @@ class MemberServiceTest {
     @Autowired MemberRepository memberRepository;
 
     @Test
-    @Rollback(false)
     public void 회원기입() throws Exception {
         //given면 이게 주어지면
         Member member = new Member();
@@ -42,10 +42,24 @@ class MemberServiceTest {
     @Test
     public void 중복_회원_예외() throws Exception {
         //given
+        Member member = new Member();
+        member.setName("lee yun bok");
+
+        Member member2 = new Member();
+        member2.setName("lee yun bok");
 
         //when
+        memberService.join(member);
+        try {
+            memberService.join(member2); // 예외가 발생해야함
+        } catch (IllegalStateException e) {
+            // 예외 발생시 종료
+            return;
+        }
 
         //then
+        // fail 함수가 실행되면 실패!
+        fail("예외가 발생해야 한다.");
     }
 
 }
