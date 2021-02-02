@@ -13,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-// Transactional -> 테스트 케이스에 있으면 기본으로 전략이 롤백임!
-// 롤백 전략이면 굳이 영속성 컨텍스트에 대하여 INSERT를 할 필요가 없음. ( 콘솔에 INSERT가 안찍히는 이유 )
-
+// Spring이랑 엮어서 실행할래
 @RunWith(SpringRunner.class)
+// Spring Boot를 띄운 상태로 실행할래 (Autowired)
 @SpringBootTest
+// Transactional -> 테스트 케이스에 있으면 기본으로 전략이 롤백임!
 @Transactional
 class MemberServiceTest {
 
