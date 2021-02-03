@@ -1,10 +1,7 @@
 package com.jpabook.jpashop.service;
 
 import com.jpabook.jpashop.domain.Item.Book;
-import com.jpabook.jpashop.domain.Item.Item;
-import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.repository.ItemRepository;
-import com.jpabook.jpashop.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +22,7 @@ class ItemServiceTest {
     ItemRepository itemRepository;
 
     @Test
-    public void 재고추가() throws Exception {
+    public void 재고추가() {
         //given면 이게 주어지면
         Book item = new Book();
         item.setName("springBook");
@@ -42,7 +39,7 @@ class ItemServiceTest {
     }
 
     @Test
-    public void 재고수정() throws Exception {
+    public void 재고수정() {
         //given
         Book item = new Book();
         item.setName("springBook");
