@@ -53,7 +53,7 @@ public class Order {
     }
 
 
-    // 생성이 복잡할 경우 하나의 메서드로 묶어버려야 나중에 고치기도 쉬움
+    // 생성이 복잡할 경우 하나의 메서드로 묶어버려야 나중에 고치기도 쉬움 (주문 생성 로직 수정시 여기만 보면 됨)
     //==주문 생성 메서드==//
     public static Order createOrder(Member member, Delivery delivery, OrderItem... orderItems) {
         Order order = new Order();
@@ -77,7 +77,6 @@ public class Order {
         }
 
         this.setStatus(OrderStatus.CANCEL);
-
         // 고객이 여러개의 상품을 주문한 경우 여러개의 상품을 모두 취소해줘야함
         for (OrderItem orderItem : orderItems) {
             orderItem.cancel();
