@@ -17,8 +17,9 @@ public class ItemService {
 
     //Write 권한 추가
     @Transactional
-    public void saveItem(Item item) {
+    public Long saveItem(Item item) {
         itemRepository.save(item);
+        return item.getId();
     }
 
     public List<Item> findItems() {
