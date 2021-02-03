@@ -25,7 +25,7 @@ class MemberServiceTest {
     @Autowired MemberRepository memberRepository;
 
     @Test
-    public void 회원기입() throws Exception {
+    public void 회원가입() throws Exception {
         //given면 이게 주어지면
         Member member = new Member();
         member.setName("lee yun bok");
