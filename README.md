@@ -21,7 +21,17 @@
   * VIP 사용자는 매년 5개의 20% 할인 쿠폰을 발급 받는다.
   * 회원은 판매자와 구매자로 나뉘어지며, 두가지의 권한을 모두 부여받을 수 있다.
   
-  <br/>
+<br/>
   
-  ## 테이블 설계 
-  <img width="904" alt="스크린샷 2021-01-28 오후 9 57 47" src="https://user-images.githubusercontent.com/44944031/106141731-e8efc500-61b3-11eb-882d-01c1ab920885.png">
+## 테이블 설계 
+<img width="904" alt="스크린샷 2021-01-28 오후 9 57 47" src="https://user-images.githubusercontent.com/44944031/106141731-e8efc500-61b3-11eb-882d-01c1ab920885.png">
+
+<br/>
+
+## 애플리케이션 아키텍처 
+![스크린샷 2021-02-05 오후 11 39 01](https://user-images.githubusercontent.com/44944031/107047661-6a2a0600-680b-11eb-9306-53c2845a18ca.png)
+1. controller, web : 웹 계층
+2. service : 비즈니스 로직, 트랜잭션 처리 
+3. repository : JPA를 직접 사용하는 계층, 엔티티 매니저 사용 
+4. domain : 엔티티가 모여있는 계층, 모든 계층에서 사용 
+ 
