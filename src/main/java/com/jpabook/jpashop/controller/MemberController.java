@@ -51,6 +51,8 @@ public class MemberController {
         return "redirect:/";
     }
 
+    // 이것도 DTO or MemberForm을 활용하는 것이 좋지만, 단순하기 때문에 그냥 엔티티 리스트를 뿌려줌
+    // API를 만들때는 절대 엔티티를 외부로 반환하면 안됨, 엔티티를 변경되면 API 스펙도 바뀌게 됨 ( 연결된 시스템들이 고통 받음 )
     @GetMapping("/members")
     public String list(Model model) {
         // command + option + n
