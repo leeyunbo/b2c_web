@@ -2,20 +2,23 @@ package com.jpabook.jpashop.controller;
 
 import com.jpabook.jpashop.service.MemberService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor
+@Slf4j
 public class MemberController {
 
     private final MemberService memberService;
 
     // Model : Controller -> view에서 데이터 담을 수 있음
-    @GetMapping(value = "/mebers/new")
+    @GetMapping(value = "/members/new")
     public String createForm(Model model) {
         // validation(?)과 같은걸 해줘서 빈껍데기를 가져가야함
+        log.info("member controller");
         model.addAttribute("memberForm", new MemberForm());
         return "members/createMemberForm";
     }
