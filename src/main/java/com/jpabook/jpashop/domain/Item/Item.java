@@ -26,6 +26,12 @@ public abstract class Item {
     private int price;
     private int stockQuantity;
 
+    public void change(String name, int price, int stockQuantity) {
+        setName(name);
+        setPrice(price);
+        setStockQuantity(stockQuantity);
+    }
+
     // 다대다를 1대다, 다대1로 풀어내야하기 떄문에 중간 테이블과 조인이 필요함
     @ManyToMany(mappedBy = "items")
     private List<Category> categories = new ArrayList<>();

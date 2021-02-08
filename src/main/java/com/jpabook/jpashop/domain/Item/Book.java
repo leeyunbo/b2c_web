@@ -16,9 +16,7 @@ public class Book extends Item {
     private String isbn;
 
     public void change(String name, int price, int stockQuantity, String author, String isbn) {
-        super.setName(name);
-        super.setPrice(price);
-        super.setStockQuantity(stockQuantity);
+        super.change(name, price, stockQuantity);
         setAuthor(author);
         setIsbn(isbn);
     }
