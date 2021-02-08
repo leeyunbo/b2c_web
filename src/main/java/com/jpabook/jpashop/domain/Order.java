@@ -73,6 +73,7 @@ public class Order {
     //==비즈니스 로직==//
     /**
      * 주문 취소
+     * 자동으로 order의 정보가 바뀌었네?
      */
     public void cancel() {
         if (delivery.getStatus() == DeliveryStatus.COMP) {
