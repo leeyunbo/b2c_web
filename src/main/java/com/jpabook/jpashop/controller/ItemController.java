@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -15,7 +16,7 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class ItermController {
+public class ItemController {
 
     private final ItemService itemService;
 
@@ -49,5 +50,21 @@ public class ItermController {
         List<Item> items = itemService.findItems();
         model.addAttribute("items", items);
         return "items/itemList";
+    }
+
+    @GetMapping("items/{itemId}/edit")
+    public String updateItemForm(@PathVariable("itemId") Long itemId, Model model) {
+        Book book = (Book) itemService.findOne(itemId); // 캐스팅하는 것은 좋지 않은 습관. 나중에 고치자
+
+        BookForm form = new BookForm();
+        form.setId(book.getId());
+        form.setName(book.getName());
+        form.setPrice(book.getPrice());
+        form.setStockQuantity(book.getStockQuantity());
+        form.setAuthor(book.getAuthor());
+        form.setIsbn(book.getIsbn());
+
+        model.addAttribute("form", form);
+        return "items/updateItemForm";
     }
 }
