@@ -1,5 +1,13 @@
 # b2c 쇼핑몰 개발
 
+## 기술 스택 
+1. spring-boot
+2. jpa-hibernate
+3. h2-database 
+4. thyme-leaf 
+
+<br/>
+
 ## 기능 
 ### 1. 회원 기능 (MemberService)
   * 회원  등록 O
