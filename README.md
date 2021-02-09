@@ -1,10 +1,10 @@
 # b2c 쇼핑몰 개발
 
 ## 기술 스택 
-1. spring-boot
-2. jpa-hibernate
-3. h2-database 
-4. thyme-leaf 
+* spring-boot
+* jpa-hibernate
+* h2-database 
+* thyme-leaf 
 
 <br/>
 
