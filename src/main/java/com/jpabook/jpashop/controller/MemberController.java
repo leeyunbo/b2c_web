@@ -1,6 +1,7 @@
 package com.jpabook.jpashop.controller;
 
 import com.jpabook.jpashop.domain.Address;
+import com.jpabook.jpashop.domain.Item.Book;
 import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.validation.Valid;
@@ -59,4 +62,29 @@ public class MemberController {
         model.addAttribute("members", memberService.findMembers());
         return "members/memberList";
     }
+
+    @GetMapping("members/{memberId}/edit")
+    public String updateMemberForm(@PathVariable("memberId") Long memberId, Model model) {
+        Member member = memberService.findOne(memberId); // 캐스팅하는 것은 좋지 않은 습관. 나중에 고치자
+
+        MemberForm form = new MemberForm();
+        Address address = member.getAddress();
+
+        form.setId(member.getId());
+        form.setName(member.getName());
+        form.setCity(address.getCity());
+        form.setStreet(address.getStreet());
+        form.setZipcode(address.getZipcode());
+
+        model.addAttribute("form", form);
+        return "members/updateMemberForm";
+    }
+
+    @PostMapping("members/{memberId}/edit")
+    public String updateMember(@PathVariable Long memberId, @ModelAttribute("form") MemberForm form) {
+        // 해당 상품에 대한 권한이 있는지 체크하는 로직이 있으면 보안상 좋음
+        memberService.updateMember(memberId, form.getName(), form.getPrice(), form.getStockQuantity(), form.getAuthor(), form.getIsbn());
+        return "redirect:/items";
+    }
+
 }
