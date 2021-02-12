@@ -1,5 +1,6 @@
 package com.jpabook.jpashop.controller;
 
+import com.jpabook.jpashop.domain.MemberGrade;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,5 +19,7 @@ public class MemberForm {
     private String city;
     private String street;
     private String zipcode;
+
+    private MemberGrade grade;
 
 }
