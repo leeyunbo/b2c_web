@@ -12,19 +12,16 @@
     <div class="jumbotron"> <h2>대량 구매 서비스</h2>
         <p class="lead">로그인</p>
         <p>
-            <form th:action="@{/login}" th:object="${form}" method="post"> <!-- id -->
+            <form th:action="@{/login}" th:object="${loginMemberForm}" method="post"> <!-- id -->
                 <div class="form-group">
                     <label th:for="name">계정</label>
-                    <input type="text" th:field="*{name}" class="form-control" placeholder="계정을 입력하세요"
-                           th:class="${#fields.hasErrors('name')}? 'form-control fieldError' : 'form-control'">
-                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect date</p>
+                    <input type="text" th:field="*{name}" class="form-control" placeholder="계정을 입력하세요"/>
+                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</p>
                 </div>
 
                 <div class="form-group">
-                    <label th:for="passwd">비밀번호</label>
-                    <input type="text" th:field="*{passwd}" class="form-control" placeholder="비밀번호를 입력하세요"
-                           th:class="${#fields.hasErrors('name')}? 'form-control fieldError' : 'form-control'">
-                    <p th:if="${#fields.hasErrors('name')}" th:errors="*{passwd}">Incorrect date</p>
+                    <label th:for="password">비밀번호</label>
+                    <input type="text" th:field="*{password}" class="form-control" placeholder="비밀번호를 입력하세요"/>
                 </div>
 
                 <button type="Submit" class="btn btn-primary">로그인</button>
