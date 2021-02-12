@@ -81,4 +81,18 @@ public class MemberService {
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
     }
+
+    /**
+     * 회원 정보 수정
+     * @param memberId
+     * @param name
+     * @param city
+     * @param street
+     * @param zipcode
+     */
+    @Transactional
+    public void updateMember(Long memberId, String name, String city, String street, String zipcode) {
+        Member findItem = memberRepository.findOne(memberId);
+        findItem.change(memberId, name, city, street, zipcode);
+    }
 }

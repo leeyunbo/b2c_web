@@ -25,4 +25,11 @@ public class Member {
     // ORDER 테이블에 있는 member에 의해 매핑된다.
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList();
+
+    public void change(Long memberId, String name, String city, String street, String zipcode) {
+        Address address = new Address(city, street, zipcode);
+        setId(memberId);
+        setName(name);
+        setAddress(address);
+    }
 }
