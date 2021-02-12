@@ -1,18 +1,48 @@
 package com.jpabook.jpashop.controller;
 
+import com.jpabook.jpashop.domain.Member;
+import com.jpabook.jpashop.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.Valid;
+
 @Controller
+@RequiredArgsConstructor
 @Slf4j
 public class HomeController {
 
-    @RequestMapping("/")
+    private final MemberService memberService;
+
+    @GetMapping("/home")
     public String home() {
-        log.info("home controller");
         return "home";
+    }
+
+    @GetMapping("/")
+    public String login(Model model) {
+        model.addAttribute("form", new MemberLoginForm());
+        return "loginMember";
+    }
+
+    @PostMapping("/login")
+    public String login(@Valid MemberLoginForm form, BindingResult result) {
+        if (result.hasErrors()) {
+            return "loginMember";
+        }
+
+        Member findMember = memberService.findOne(form.getName());
+        if(findMember == null) {
+            return "redirect:/";
+        }
+        else {
+            return "home";
+        }
     }
 }

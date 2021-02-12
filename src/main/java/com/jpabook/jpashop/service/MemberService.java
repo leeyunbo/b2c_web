@@ -56,8 +56,8 @@ public class MemberService {
     // 물론 복수의 WAS를 통해 접근하여 동시에 같은 계정을 생성하는 경우가 발생하면 이 로직이 틀어질 수도 있다.
     // 그런 경우를 대비하여 디비 필드에 UNIQUE 제약 조건을 걸어주는 것이 권장된다.
     private void validateDuplicateMember(Member member) {
-        List<Member> findMembers = memberRepository.findByName(member.getName());
-        if (findMembers.size() != 0) {
+        Member findMembers = memberRepository.findByName(member.getName());
+        if (findMembers != null) {
             throw new IllegalStateException("이미 존재하는 회원입니다.");
         }
     }
@@ -80,6 +80,16 @@ public class MemberService {
     @Transactional(readOnly = true)
     public Member findOne(Long memberId) {
         return memberRepository.findOne(memberId);
+    }
+
+    /**
+     * 로그인을 위한 회원 조회
+     * @param name 회원 이름
+     * @return
+     */
+    @Transactional(readOnly = true)
+    public Member findOne(String name) {
+        return memberRepository.findByName(name);
     }
 
     /**
