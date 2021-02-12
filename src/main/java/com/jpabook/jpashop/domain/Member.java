@@ -26,6 +26,9 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList();
 
+    @Enumerated(EnumType.STRING)
+    private MemberGrade grade = MemberGrade.BASIC;
+
     public void change(Long memberId, String name, String city, String street, String zipcode) {
         Address address = new Address(city, street, zipcode);
         setId(memberId);
