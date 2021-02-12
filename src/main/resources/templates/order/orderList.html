@@ -28,6 +28,8 @@
             <th>대표상품 이름</th>
             <th>대표상품 주문가격</th>
             <th>대표상품 주문수량</th>
+            <th>총 주문가격</th>
+            <th>등급 적용가격</th>
             <th>상태</th>
             <th>일시</th>
             <th></th>
@@ -40,6 +42,8 @@
                 <td th:text="${item.orderItems[0].item.name}"></td>
                 <td th:text="${item.orderItems[0].orderPrice}"></td>
                 <td th:text="${item.orderItems[0].count}"></td>
+                <td th:text="${item.getTotalPrice()}"></td>
+                <td th:text="${item.getTotalPrice()}"></td>
                 <td th:text="${item.status}"></td>
                 <td th:text="${item.orderDate}"></td>
                 <td>
