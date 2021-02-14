@@ -60,5 +60,11 @@ public class OrderController {
         return "redirect:/orders";
     }
 
+    @GetMapping("/orders/{orderId}/update")
+    public String orderUpdateForm(@PathVariable("orderId") Long orderId) {
+        oderService.updateOrder(orderId);
+        return "redirect:/orders";
+    }
+
 
 }

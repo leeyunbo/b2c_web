@@ -20,13 +20,8 @@ public class HomeController {
 
     private final MemberService memberService;
 
-    @GetMapping("/home")
-    public String home() {
-        return "home";
-    }
-
     @GetMapping("/")
-    public String login(Model model) {
+    public String home(Model model) {
         model.addAttribute("loginMemberForm", new MemberLoginForm());
         return "loginMember";
     }
@@ -39,7 +34,7 @@ public class HomeController {
 
         Member findMember = memberService.findOne(form.getName());
         if(findMember == null) {
-            return "redirect:/";
+            return "loginMember";
         }
         else {
             return "home";
