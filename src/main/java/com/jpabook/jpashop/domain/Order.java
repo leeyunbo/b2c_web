@@ -109,4 +109,17 @@ public class Order {
 
         return totalPrice;
     }
+
+    /**
+     * 할인 주문 가격 조회
+     */
+    public int getEventPrice() {
+        int totalPrice = getTotalPrice();
+
+        if(getMember().getGrade().equals(MemberGrade.VIP)) {
+            return (int)(totalPrice * 0.9);
+        }
+
+        return totalPrice;
+    }
 }
