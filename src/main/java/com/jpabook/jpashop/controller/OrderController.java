@@ -3,6 +3,7 @@ package com.jpabook.jpashop.controller;
 import com.jpabook.jpashop.domain.Item.Item;
 import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.domain.Order;
+import com.jpabook.jpashop.domain.OrderForm;
 import com.jpabook.jpashop.repository.OrderSearch;
 import com.jpabook.jpashop.service.ItemService;
 import com.jpabook.jpashop.service.MemberService;
@@ -61,7 +62,14 @@ public class OrderController {
     }
 
     @GetMapping("/orders/{orderId}/update")
-    public String orderUpdateForm(@PathVariable("orderId") Long orderId) {
+    public String orderUpdateForm(@PathVariable("orderId") Long orderId, Model model) {
+        oderService.updateOrder(orderId);
+        model.addAttribute("form", new OrderForm());
+        return "redirect:/orders";
+    }
+
+    @PostMapping("/orders/{orderId}/update")
+    public String orderUpdate(@PathVariable("orderId") Long orderId, @ModelAttribute("form") OrderForm form) {
         oderService.updateOrder(orderId);
         return "redirect:/orders";
     }

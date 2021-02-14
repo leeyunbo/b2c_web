@@ -63,7 +63,7 @@ public class MemberController {
 
     @GetMapping("members/{memberId}/edit")
     public String updateMemberForm(@PathVariable("memberId") Long memberId, Model model) {
-        Member member = memberService.findOne(memberId); // 캐스팅하는 것은 좋지 않은 습관. 나중에 고치자
+        Member member = memberService.findOne(memberId);
 
         MemberForm form = new MemberForm();
         Address address = member.getAddress();
