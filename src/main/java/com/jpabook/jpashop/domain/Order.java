@@ -87,6 +87,13 @@ public class Order {
         }
     }
 
+    /**
+     * 주문 수정
+     */
+    public void change(List<OrderItem> orderItems) {
+        setOrderItems(orderItems);
+    }
+
 
     //==조회 로직==//
 

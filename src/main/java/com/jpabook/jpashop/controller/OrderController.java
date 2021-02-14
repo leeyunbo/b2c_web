@@ -9,6 +9,7 @@ import com.jpabook.jpashop.service.ItemService;
 import com.jpabook.jpashop.service.MemberService;
 import com.jpabook.jpashop.service.OrderService;
 import lombok.RequiredArgsConstructor;
+import org.aspectj.weaver.ast.Or;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -63,14 +64,20 @@ public class OrderController {
 
     @GetMapping("/orders/{orderId}/update")
     public String orderUpdateForm(@PathVariable("orderId") Long orderId, Model model) {
-        oderService.updateOrder(orderId);
+        OrderForm form = new OrderForm();
+        Order order = orderService.getOrder(orderId);
+
+        form.setId(orderId);
+        form.setStatus(order.getStatus());
+        form.setOrderItems(order.getOrderItems());
+
         model.addAttribute("form", new OrderForm());
-        return "redirect:/orders";
+        return "order/updateOrderForm";
     }
 
     @PostMapping("/orders/{orderId}/update")
     public String orderUpdate(@PathVariable("orderId") Long orderId, @ModelAttribute("form") OrderForm form) {
-        oderService.updateOrder(orderId);
+        orderService.updateOrder(orderId, form.getOrderItems());
         return "redirect:/orders";
     }
 
