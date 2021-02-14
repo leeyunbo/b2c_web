@@ -23,7 +23,7 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("loginMemberForm", new MemberLoginForm());
-        return "loginMember";
+        return "home";
     }
 
     @PostMapping("/login")

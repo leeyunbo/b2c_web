@@ -13,7 +13,9 @@ import java.util.List;
 public class OrderForm {
     private Long id;
 
-    private List<OrderItem> orderItems = new ArrayList<>();
+    private String name;
+
+    private int count;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus status; //주문상태 (ORDER, CANCEL)

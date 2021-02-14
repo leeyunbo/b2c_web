@@ -90,8 +90,8 @@ public class Order {
     /**
      * 주문 수정
      */
-    public void change(List<OrderItem> orderItems) {
-        setOrderItems(orderItems);
+    public void change(int count) {
+        getOrderItems().get(0).setCount(count);
     }
 
 

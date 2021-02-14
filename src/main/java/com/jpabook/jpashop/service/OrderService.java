@@ -68,10 +68,10 @@ public class OrderService {
      * 주문 업데이트
      */
     @Transactional
-    public void updateOrder(Long orderId, List<OrderItem> orderItems) {
+    public void updateOrder(Long orderId, int count) {
         // 주문 조회
         Order order = orderRepository.findOne(orderId);
-        order.change(orderItems);
+        order.change(count);
     }
 
     /**

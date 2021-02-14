@@ -4,6 +4,7 @@ import com.jpabook.jpashop.domain.Item.Item;
 import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.domain.Order;
 import com.jpabook.jpashop.domain.OrderForm;
+import com.jpabook.jpashop.domain.OrderItem;
 import com.jpabook.jpashop.repository.OrderSearch;
 import com.jpabook.jpashop.service.ItemService;
 import com.jpabook.jpashop.service.MemberService;
@@ -62,22 +63,24 @@ public class OrderController {
         return "redirect:/orders";
     }
 
-    @GetMapping("/orders/{orderId}/update")
+    @GetMapping("/orders/{orderId}/edit")
     public String orderUpdateForm(@PathVariable("orderId") Long orderId, Model model) {
         OrderForm form = new OrderForm();
         Order order = orderService.getOrder(orderId);
+        List<OrderItem> orders = order.getOrderItems();
 
         form.setId(orderId);
         form.setStatus(order.getStatus());
-        form.setOrderItems(order.getOrderItems());
+        form.setCount(orders.get(0).getCount());
+        form.setName(orders.get(0).getItem().getName());
 
-        model.addAttribute("form", new OrderForm());
+        model.addAttribute("form", form);
         return "order/updateOrderForm";
     }
 
-    @PostMapping("/orders/{orderId}/update")
+    @PostMapping("/orders/{orderId}/edit")
     public String orderUpdate(@PathVariable("orderId") Long orderId, @ModelAttribute("form") OrderForm form) {
-        orderService.updateOrder(orderId, form.getOrderItems());
+        orderService.updateOrder(orderId, form.getCount());
         return "redirect:/orders";
     }
 
