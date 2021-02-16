@@ -36,7 +36,12 @@ public class HomeController {
             return "loginMember";
         }
         else {
-            return "home";
+            if(findMember.loginCheck(form.getPassword())) {
+                return "home";
+            }
+            else {
+                return "loginMember";
+            }
         }
     }
 }

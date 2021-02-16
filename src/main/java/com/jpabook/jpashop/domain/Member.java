@@ -41,4 +41,11 @@ public class Member {
         setAddress(address);
         setGrade(grade);
     }
+
+    public boolean loginCheck(String inputPassword) {
+        if(inputPassword.equals(getPassword())) {
+            return true;
+        }
+        else return false;
+    }
 }
