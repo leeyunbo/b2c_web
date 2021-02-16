@@ -1,5 +1,5 @@
 package com.jpabook.jpashop.domain;
 
 public enum MemberAuthority {
-    COMMON, ADMINISTRATOR
+    COMMON, ADMIN
 }

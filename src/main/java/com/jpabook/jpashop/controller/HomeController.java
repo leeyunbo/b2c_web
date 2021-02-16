@@ -6,12 +6,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.Valid;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,18 +17,20 @@ public class HomeController {
 
     private final MemberService memberService;
 
-    @GetMapping("/")
+
+    @GetMapping("/home")
     public String home(Model model) {
-        model.addAttribute("loginMemberForm", new MemberLoginForm());
         return "home";
     }
 
-    @PostMapping("/login")
-    public String login(@Valid MemberLoginForm form, BindingResult result) {
-        if (result.hasErrors()) {
-            return "loginMember";
-        }
+    @GetMapping("/")
+    public String loginForm(Model model) {
+        model.addAttribute("form", new MemberLoginForm());
+        return "loginMember";
+    }
 
+    @PostMapping("/")
+    public String login(@ModelAttribute("form") MemberLoginForm form) {
         Member findMember = memberService.findOne(form.getName());
         if(findMember == null) {
             return "loginMember";

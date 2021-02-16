@@ -14,6 +14,7 @@
             <th>주소</th>
             <th>우편번호</th>
             <th>회원등급</th>
+            <th>권한</th>
         </tr>
         </thead>
             <tbody>
@@ -24,6 +25,7 @@
                 <td th:text="${member.address?.street}"></td>
                 <td th:text="${member.address?.zipcode}"></td>
                 <td th:text="${member.grade}"></td>
+                <td th:text="${member.memberAuthority}"></td>
                 <td><a href="#" th:href="@{/members/{id}/edit (id=${member.id})}" class="btn btn-primary" role="button">수정</a></td>
             </tr>
             </tbody>

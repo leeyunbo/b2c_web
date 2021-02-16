@@ -18,6 +18,11 @@ public class Member {
 
     private String name;
 
+    private String password;
+
+    @Enumerated(EnumType.STRING)
+    private MemberAuthority memberAuthority = MemberAuthority.COMMON;
+
     @Embedded
     private Address address;
 
