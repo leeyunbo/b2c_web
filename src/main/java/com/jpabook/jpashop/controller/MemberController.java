@@ -2,6 +2,7 @@ package com.jpabook.jpashop.controller;
 
 import com.jpabook.jpashop.domain.Address;
 import com.jpabook.jpashop.domain.Member;
+import com.jpabook.jpashop.domain.MemberInfo;
 import com.jpabook.jpashop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.annotation.Resource;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -22,6 +24,7 @@ import java.util.List;
 public class MemberController {
 
     private final MemberService memberService;
+
 
     // Model : Controller -> view에서 데이터 담을 수 있음
     @GetMapping(value = "/members/new")
