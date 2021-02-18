@@ -34,12 +34,13 @@ public class Member {
     @Enumerated(EnumType.STRING)
     private MemberGrade grade = MemberGrade.BASIC;
 
-    public void change(Long memberId, String name, String city, String street, String zipcode, MemberGrade grade) {
+    public void change(Long memberId, String name, String city, String street, String zipcode, MemberGrade grade, MemberAuthority memberAuthority) {
         Address address = new Address(city, street, zipcode);
         setId(memberId);
         setName(name);
         setAddress(address);
         setGrade(grade);
+        setMemberAuthority(memberAuthority);
     }
 
     public boolean loginCheck(String inputPassword) {

@@ -1,6 +1,7 @@
 package com.jpabook.jpashop.service;
 
 import com.jpabook.jpashop.domain.Member;
+import com.jpabook.jpashop.domain.MemberAuthority;
 import com.jpabook.jpashop.domain.MemberGrade;
 import com.jpabook.jpashop.repository.MemberRepository;
 import lombok.AllArgsConstructor;
@@ -103,8 +104,8 @@ public class MemberService {
      * @param grade
      */
     @Transactional
-    public void updateMember(Long memberId, String name, String city, String street, String zipcode, MemberGrade grade) {
+    public void updateMember(Long memberId, String name, String city, String street, String zipcode, MemberGrade grade, MemberAuthority memberAuthority) {
         Member findItem = memberRepository.findOne(memberId);
-        findItem.change(memberId, name, city, street, zipcode, grade);
+        findItem.change(memberId, name, city, street, zipcode, grade, memberAuthority);
     }
 }

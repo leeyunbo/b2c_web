@@ -78,6 +78,7 @@ public class MemberController {
         form.setStreet(address.getStreet());
         form.setZipcode(address.getZipcode());
         form.setGrade(member.getGrade());
+        form.setMemberAuthority(member.getMemberAuthority());
 
         model.addAttribute("form", form);
         return "members/updateMemberForm";
@@ -86,7 +87,7 @@ public class MemberController {
     @PostMapping("members/{memberId}/edit")
     public String updateMember(@PathVariable Long memberId, @ModelAttribute("form") MemberForm form) {
         // 해당 상품에 대한 권한이 있는지 체크하는 로직이 있으면 보안상 좋음
-        memberService.updateMember(memberId, form.getName(), form.getCity(), form.getStreet(), form.getZipcode(), form.getGrade());
+        memberService.updateMember(memberId, form.getName(), form.getCity(), form.getStreet(), form.getZipcode(), form.getGrade(), form.getMemberAuthority());
         return "redirect:/members";
     }
 
