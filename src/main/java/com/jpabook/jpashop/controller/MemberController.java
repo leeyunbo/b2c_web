@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -89,6 +90,12 @@ public class MemberController {
         // 해당 상품에 대한 권한이 있는지 체크하는 로직이 있으면 보안상 좋음
         memberService.updateMember(memberId, form.getName(), form.getCity(), form.getStreet(), form.getZipcode(), form.getGrade(), form.getMemberAuthority());
         return "redirect:/members";
+    }
+
+    @GetMapping("members/logout")
+    public String logoutMember(HttpServletRequest httpServletRequest) {
+        httpServletRequest.getSession().removeAttribute("memberInfo");
+        return "redirect:/";
     }
 
 }

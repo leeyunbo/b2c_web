@@ -10,8 +10,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -24,12 +22,21 @@ public class HomeController {
     
 
     @GetMapping("/home")
-    public String home(Model model) {
+    public String home(Model model, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session.getAttribute("memberInfo") == null) {
+            return "redirect:/";
+        }
+
         return "home";
     }
 
     @GetMapping("/")
-    public String loginForm(Model model) {
+    public String loginForm(Model model, HttpServletRequest request) {
+        if(request.getSession().getAttribute("memberInfo") != null) {
+            return "home";
+        }
+
         model.addAttribute("form", new MemberLoginForm());
         return "loginMember";
     }
@@ -38,7 +45,7 @@ public class HomeController {
     public String login(@ModelAttribute("form") MemberLoginForm form, HttpServletRequest request) {
         Member findMember = memberService.findOne(form.getName());
         if(findMember == null) {
-            return "loginMember";
+            return "redirect:/";
         }
         else {
             if(findMember.loginCheck(form.getPassword())) {
@@ -52,7 +59,7 @@ public class HomeController {
                 return "home";
             }
             else {
-                return "loginMember";
+                return "redirect:/";
             }
         }
     }
