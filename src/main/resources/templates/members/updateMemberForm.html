@@ -32,6 +32,17 @@
                 </option>
             </select>
         </div>
+        <div class="form-group">
+            <label for="grade">멤버등급</label>
+            <select th:field="*{memberAuthority}" name="memberAuthority" id="memberAuthority" class="form-control">
+                <option value=""></option>
+                <option th:each="memberAuthority : ${T(com.jpabook.jpashop.domain.MemberAuthority).values()}"
+                        th:value="${memberAuthority.name()}"
+                        th:text="${memberAuthority.name()}">
+                    option
+                </option>
+            </select>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 
