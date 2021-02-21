@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <div class="header" th:fragment="bodyHeader">
-    <ul class="nav nav-pills pull-right">
-        <li>
-            <a href="/">MENU</a>
-        </li>
-    </ul>
     <a href="/"><h3 class="text-muted">쇼핑 서비스</h3></a>
     <table th:if="${session.memberInfo != null}" class="table table-striped">
     <tr>
