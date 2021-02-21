@@ -1,10 +1,7 @@
 package com.jpabook.jpashop.controller;
 
+import com.jpabook.jpashop.domain.*;
 import com.jpabook.jpashop.domain.Item.Item;
-import com.jpabook.jpashop.domain.Member;
-import com.jpabook.jpashop.domain.Order;
-import com.jpabook.jpashop.domain.OrderForm;
-import com.jpabook.jpashop.domain.OrderItem;
 import com.jpabook.jpashop.repository.OrderSearch;
 import com.jpabook.jpashop.service.ItemService;
 import com.jpabook.jpashop.service.MemberService;
@@ -15,6 +12,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -55,6 +54,19 @@ public class OrderController {
 
         model.addAttribute("orders", orders);
         return "order/orderList";
+    }
+
+    @GetMapping("/orders/me")
+    public String orderMyList(@ModelAttribute("orderSearch")OrderSearch orderSearch, Model model, HttpServletRequest httpServletRequest) {
+        // 세션 정보 불러오기
+        HttpSession session = httpServletRequest.getSession();
+        MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
+        orderSearch.setMemberName(memberInfo.getName());
+
+        List<Order> orders = orderService.findOrders(orderSearch);
+
+        model.addAttribute("orders", orders);
+        return "order/orderMyList";
     }
 
     @PostMapping("/orders/{orderId}/cancel")

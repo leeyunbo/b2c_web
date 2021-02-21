@@ -63,9 +63,17 @@ public class OrderRepository {
             Predicate name = cb.like(m.<String>get("name"), "%" + orderSearch.getMemberName() + "%");
             criteria.add(name);
         }
+        // 주문 상태 + 회원 이름 검색
+        else if (orderSearch.getOrderStatus() != null && StringUtils.hasText(orderSearch.getMemberName())) {
+            Predicate status = cb.equal(o.get("status"), orderSearch.getOrderStatus());
+            Predicate name = cb.like(m.<String>get("name"), "%" + orderSearch.getMemberName() + "%");
+            criteria.add(name);
+            criteria.add(status);
+        }
 
         cq.where(cb.and(criteria.toArray(new Predicate[criteria.size()])));
         TypedQuery<Order> query = em.createQuery(cq).setMaxResults(1000);
         return query.getResultList();
     }
+
 }

@@ -30,7 +30,7 @@ class ItemServiceTest {
         item.setIsbn("#20200078");
 
         //when 이걸 실행하면
-        Long saveId = itemService.saveItem(item);
+        Long saveId = itemService.saveItem(item, 1L);
 
         // 같은 트랜잭션에서 ID 값이 같으면 같은 영속성 컨텍스트가 되어서 딱 하나로 관리된다.
         // 따라서 True가 나올 수 있다.
