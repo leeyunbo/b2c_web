@@ -2,6 +2,7 @@ package com.jpabook.jpashop.controller;
 
 import com.jpabook.jpashop.domain.Item.Book;
 import com.jpabook.jpashop.domain.Item.Item;
+import com.jpabook.jpashop.domain.MemberInfo;
 import com.jpabook.jpashop.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -28,21 +31,18 @@ public class ItemController {
     }
 
     @PostMapping("/items/new")
-    public String create(@Valid BookForm form, BindingResult result) {
+    public String create(@Valid BookForm form, BindingResult result, HttpServletRequest httpServletRequest) {
         if (result.hasErrors()) {
             return "items/createItemsForm";
         }
 
+        HttpSession session = httpServletRequest.getSession();
+        MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
+
         Book book = new Book();
+        book.create(form.getName(), form.getPrice(), form.getStockQuantity(), form.getAuthor(), form.getIsbn());
+        itemService.saveItem(book, memberInfo.getId());
 
-        // 나중에 createBook() 메서드로 통합시켜서 만들어놓자 => 엔티티에 ( Setter 방지 )
-        book.setName(form.getName());
-        book.setPrice(form.getPrice());
-        book.setStockQuantity(form.getStockQuantity());
-        book.setAuthor(form.getAuthor());
-        book.setIsbn(form.getIsbn());
-
-        itemService.saveItem(book);
         return "redirect:/";
     }
 

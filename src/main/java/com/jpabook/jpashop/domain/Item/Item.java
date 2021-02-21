@@ -1,6 +1,7 @@
 package com.jpabook.jpashop.domain.Item;
 
 import com.jpabook.jpashop.domain.Category;
+import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.exception.NotEnoughStockException;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +27,18 @@ public abstract class Item {
     private int price;
     private int stockQuantity;
 
+    // 연관관계 주인
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
+
     public void change(String name, int price, int stockQuantity) {
+        setName(name);
+        setPrice(price);
+        setStockQuantity(stockQuantity);
+    }
+
+    public void create(String name, int price, int stockQuantity) {
         setName(name);
         setPrice(price);
         setStockQuantity(stockQuantity);

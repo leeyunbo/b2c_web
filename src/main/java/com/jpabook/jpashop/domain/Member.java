@@ -1,5 +1,6 @@
 package com.jpabook.jpashop.domain;
 
+import com.jpabook.jpashop.domain.Item.Item;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -33,6 +34,9 @@ public class Member {
 
     @Enumerated(EnumType.STRING)
     private MemberGrade grade = MemberGrade.BASIC;
+
+    @OneToMany(mappedBy = "member")
+    private List<Item> items = new ArrayList();
 
     public void change(Long memberId, String name, String city, String street, String zipcode, MemberGrade grade, MemberAuthority memberAuthority) {
         Address address = new Address(city, street, zipcode);

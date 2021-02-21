@@ -20,4 +20,10 @@ public class Book extends Item {
         setAuthor(author);
         setIsbn(isbn);
     }
+
+    public void create(String name, int price, int stockQuantity, String author, String isbn) {
+        super.create(name, price, stockQuantity);
+        setAuthor(author);
+        setIsbn(isbn);
+    }
 }

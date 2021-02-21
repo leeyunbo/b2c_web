@@ -2,7 +2,9 @@ package com.jpabook.jpashop.service;
 
 import com.jpabook.jpashop.domain.Item.Book;
 import com.jpabook.jpashop.domain.Item.Item;
+import com.jpabook.jpashop.domain.Member;
 import com.jpabook.jpashop.repository.ItemRepository;
+import com.jpabook.jpashop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,10 +17,13 @@ import java.util.List;
 public class ItemService {
 
     private final ItemRepository itemRepository;
+    private final MemberRepository memberRepository;
 
     //Write 권한 추가
     @Transactional
-    public Long saveItem(Item item) {
+    public Long saveItem(Item item, Long memberId) {
+        Member member = memberRepository.findOne(memberId);
+        item.setMember(member);
         itemRepository.save(item);
         return item.getId();
     }
