@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -25,14 +26,27 @@ public class OrderController {
     private final ItemService itemService;
 
     @GetMapping("/order")
-    public String createForm(Model model) {
-        List<Member> members = memberService.findMembers();
+    public String createForm(Model model, HttpServletRequest httpServletRequest) {
+        HttpSession session = httpServletRequest.getSession();
+        MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
         List<Item> items = itemService.findItems(null);
 
-        model.addAttribute("members", members);
-        model.addAttribute("items", items);
+        if(memberInfo.getMemberAuthority() == MemberAuthority.ADMIN) {
+            List<Member> members = memberService.findMembers();
 
-        return "order/orderForm";
+            model.addAttribute("members", members);
+            model.addAttribute("items", items);
+
+            return "order/orderForm";
+        }
+        else {
+
+            Member member = memberService.findOne(memberInfo.getId());
+            model.addAttribute("member", member);
+            model.addAttribute("items", items);
+
+            return "order/orderMyForm";
+        }
     }
 
     // RequestParam -> 선택된 요소의 Value 값이 넘어오게 되면 그걸 저장시킬 수 있음 따옴표 안에는 해당 요소의 name이 들어감
