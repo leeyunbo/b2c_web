@@ -48,9 +48,19 @@ public class ItemController {
 
     @GetMapping("/items")
     public String list(Model model) {
-        List<Item> items = itemService.findItems();
+        List<Item> items = itemService.findItems(null);
         model.addAttribute("items", items);
         return "items/itemList";
+    }
+
+    @GetMapping("/items/me")
+    public String myList(Model model, HttpServletRequest httpServletRequest) {
+        HttpSession session = httpServletRequest.getSession();
+        MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
+
+        List<Item> items = itemService.findItems(memberInfo.getName());
+        model.addAttribute("items", items);
+        return "items/itemMyList";
     }
 
     @GetMapping("items/{itemId}/edit")

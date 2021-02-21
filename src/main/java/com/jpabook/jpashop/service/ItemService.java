@@ -35,8 +35,8 @@ public class ItemService {
         findItem.change(name, price, stockQuantity, author, isbn);
     }
 
-    public List<Item> findItems() {
-        return itemRepository.findAll();
+    public List<Item> findItems(String memberName) {
+        return itemRepository.findAll(memberName);
     }
 
     public Item findOne(Long itemId) {
