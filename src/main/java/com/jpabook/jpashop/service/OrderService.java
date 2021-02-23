@@ -1,7 +1,10 @@
 package com.jpabook.jpashop.service;
 
-import com.jpabook.jpashop.domain.*;
 import com.jpabook.jpashop.domain.Item.Item;
+import com.jpabook.jpashop.domain.delivery.Delivery;
+import com.jpabook.jpashop.domain.member.Member;
+import com.jpabook.jpashop.domain.order.Order;
+import com.jpabook.jpashop.domain.order.OrderItem;
 import com.jpabook.jpashop.repository.ItemRepository;
 import com.jpabook.jpashop.repository.MemberRepository;
 import com.jpabook.jpashop.repository.OrderRepository;
@@ -10,9 +13,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service

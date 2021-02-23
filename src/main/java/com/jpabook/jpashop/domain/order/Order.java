@@ -1,5 +1,9 @@
-package com.jpabook.jpashop.domain;
+package com.jpabook.jpashop.domain.order;
 
+import com.jpabook.jpashop.domain.delivery.Delivery;
+import com.jpabook.jpashop.domain.delivery.DeliveryStatus;
+import com.jpabook.jpashop.domain.member.Member;
+import com.jpabook.jpashop.domain.member.MemberGrade;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.jpabook.jpashop.domain;
+package com.jpabook.jpashop.domain.order;
 
 import com.jpabook.jpashop.domain.Item.Item;
 import lombok.AccessLevel;

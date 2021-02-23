@@ -1,11 +1,11 @@
 package com.jpabook.jpashop.service;
 
-import com.jpabook.jpashop.domain.Address;
+import com.jpabook.jpashop.domain.member.Address;
 import com.jpabook.jpashop.domain.Item.Book;
 import com.jpabook.jpashop.domain.Item.Item;
-import com.jpabook.jpashop.domain.Member;
-import com.jpabook.jpashop.domain.Order;
-import com.jpabook.jpashop.domain.OrderStatus;
+import com.jpabook.jpashop.domain.member.Member;
+import com.jpabook.jpashop.domain.order.Order;
+import com.jpabook.jpashop.domain.order.OrderStatus;
 import com.jpabook.jpashop.exception.NotEnoughStockException;
 import com.jpabook.jpashop.repository.OrderRepository;
 import org.junit.jupiter.api.Test;

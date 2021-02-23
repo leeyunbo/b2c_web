@@ -1,5 +1,6 @@
-package com.jpabook.jpashop.domain;
+package com.jpabook.jpashop.domain.session;
 
+import com.jpabook.jpashop.domain.member.MemberAuthority;
 import lombok.Getter;
 import lombok.Setter;
 

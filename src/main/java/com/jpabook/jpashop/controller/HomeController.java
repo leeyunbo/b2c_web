@@ -1,7 +1,8 @@
 package com.jpabook.jpashop.controller;
 
-import com.jpabook.jpashop.domain.Member;
-import com.jpabook.jpashop.domain.MemberInfo;
+import com.jpabook.jpashop.domain.member.Member;
+import com.jpabook.jpashop.domain.member.MemberLoginForm;
+import com.jpabook.jpashop.domain.session.MemberInfo;
 import com.jpabook.jpashop.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

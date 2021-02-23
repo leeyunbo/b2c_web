@@ -1,7 +1,7 @@
-package com.jpabook.jpashop.controller;
+package com.jpabook.jpashop.domain.form;
 
-import com.jpabook.jpashop.domain.MemberAuthority;
-import com.jpabook.jpashop.domain.MemberGrade;
+import com.jpabook.jpashop.domain.member.MemberAuthority;
+import com.jpabook.jpashop.domain.member.MemberGrade;
 import lombok.Getter;
 import lombok.Setter;
 

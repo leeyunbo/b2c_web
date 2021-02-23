@@ -2,7 +2,7 @@ package com.jpabook.jpashop.service;
 
 import com.jpabook.jpashop.domain.Item.Book;
 import com.jpabook.jpashop.domain.Item.Item;
-import com.jpabook.jpashop.domain.Member;
+import com.jpabook.jpashop.domain.member.Member;
 import com.jpabook.jpashop.repository.ItemRepository;
 import com.jpabook.jpashop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;

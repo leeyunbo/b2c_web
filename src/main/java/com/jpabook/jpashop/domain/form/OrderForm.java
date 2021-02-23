@@ -1,12 +1,10 @@
-package com.jpabook.jpashop.domain;
+package com.jpabook.jpashop.domain.form;
 
+import com.jpabook.jpashop.domain.order.OrderStatus;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
