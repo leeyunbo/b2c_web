@@ -7,7 +7,7 @@ import com.jpabook.jpashop.domain.session.MemberInfo;
 import com.jpabook.jpashop.domain.order.Order;
 import com.jpabook.jpashop.domain.form.OrderForm;
 import com.jpabook.jpashop.domain.order.OrderItem;
-import com.jpabook.jpashop.repository.OrderSearch;
+import com.jpabook.jpashop.domain.order.OrderSearch;
 import com.jpabook.jpashop.service.ItemService;
 import com.jpabook.jpashop.service.MemberService;
 import com.jpabook.jpashop.service.OrderService;

@@ -1,6 +1,8 @@
 package com.jpabook.jpashop.domain.member;
 
 import com.jpabook.jpashop.domain.Item.Item;
+import com.jpabook.jpashop.domain.board.Board;
+import com.jpabook.jpashop.domain.board.Comment;
 import com.jpabook.jpashop.domain.order.Order;
 import lombok.Getter;
 import lombok.Setter;
@@ -33,11 +35,18 @@ public class Member {
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList();
 
-    @Enumerated(EnumType.STRING)
-    private MemberGrade grade = MemberGrade.BASIC;
+    @OneToMany(mappedBy = "member")
+    private List<Board> boards = new ArrayList<>();
+
+    @OneToMany(mappedBy = "member")
+    private List<Comment> comments = new ArrayList<>();
 
     @OneToMany(mappedBy = "member")
     private List<Item> items = new ArrayList();
+
+    @Enumerated(EnumType.STRING)
+    private MemberGrade grade = MemberGrade.BASIC;
+
 
     public void change(Long memberId, String name, String city, String street, String zipcode, MemberGrade grade, MemberAuthority memberAuthority) {
         Address address = new Address(city, street, zipcode);

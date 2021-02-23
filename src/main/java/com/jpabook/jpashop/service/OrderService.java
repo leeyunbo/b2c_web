@@ -8,7 +8,7 @@ import com.jpabook.jpashop.domain.order.OrderItem;
 import com.jpabook.jpashop.repository.ItemRepository;
 import com.jpabook.jpashop.repository.MemberRepository;
 import com.jpabook.jpashop.repository.OrderRepository;
-import com.jpabook.jpashop.repository.OrderSearch;
+import com.jpabook.jpashop.domain.order.OrderSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
