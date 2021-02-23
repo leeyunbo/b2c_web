@@ -6,7 +6,9 @@
     <form role="form" action="/order" method="post">
         <div class="form-group">
             <label for="member">주문회원</label>
-            <input type="text" name="member" th:text="${member.getName()}" th:value="${member.getId()}" class="form-control" id="member" readonly="readonly">
+            <select name="memberId" id="member" class="form-control" readonly="readonly">
+                <option th:value="${session.memberInfo.getId()}" th:text="${session.memberInfo.getName()}"></option>
+            </select>
         </div>
         <div class="form-group">
             <label for="item">상품명</label>

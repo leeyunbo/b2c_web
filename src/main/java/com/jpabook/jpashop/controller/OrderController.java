@@ -40,7 +40,6 @@ public class OrderController {
             return "order/orderForm";
         }
         else {
-
             Member member = memberService.findOne(memberInfo.getId());
             model.addAttribute("member", member);
             model.addAttribute("items", items);
