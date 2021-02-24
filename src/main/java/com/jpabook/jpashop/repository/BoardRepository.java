@@ -21,4 +21,8 @@ public class BoardRepository {
     public Board findOne(Long boardId) {
         return em.find(Board.class, boardId);
     }
+
+    public void save(Board board) {
+        em.persist(board);
+    }
 }

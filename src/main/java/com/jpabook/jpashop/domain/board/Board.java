@@ -15,7 +15,6 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name = "boards")
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Board {
 
     @Id
@@ -38,6 +37,16 @@ public class Board {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
+
+    public static Board createBoard(Member member, BoardCategory boardCategory, String subject, String content) {
+        Board board = new Board();
+        board.setMember(member);
+        board.setBoardCategory(boardCategory);
+        board.setSubject(subject);
+        board.setContent(content);
+        board.setCreateDate(LocalDateTime.now());
+        return board;
+    }
 
 
 }
