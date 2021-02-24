@@ -26,15 +26,24 @@ public class BoardController {
     private final BoardService boardService;
     private final MemberService memberService;
 
+    /**
+     * 게시글 등록
+     * @param model
+     * @return
+     */
     @GetMapping("/boards/new")
     public String createForm(Model model) {
         model.addAttribute("form", new BookForm());
         return "boards/createBoardsForm";
     }
 
+    /**
+     * 게시글 등록
+     */
     @PostMapping("/boards/new")
     public String create(BoardForm form, HttpServletRequest httpServletRequest) {
         HttpSession session = httpServletRequest.getSession();
+
         MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
         Member member = memberService.findOne(memberInfo.getId());
 
@@ -45,7 +54,11 @@ public class BoardController {
     }
 
 
-
+    /**
+     * 요청 게시판 리스트 가져오기
+     * @param model
+     * @return
+     */
     @GetMapping("/boards/requests")
     public String requestList(Model model) {
         List<Board> boards = boardService.findAll();
@@ -53,6 +66,10 @@ public class BoardController {
         return "/boards/requestBoardList";
     }
 
+    /**
+     * 광고 게시판 리스트 가져오기
+     * @return
+     */
     @GetMapping("/boards/advertisements")
     public String advertisementList() {
         return "";
