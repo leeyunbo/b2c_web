@@ -4,27 +4,35 @@
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
     <div>
         <table class="table table-striped">
-            <thead> <tr>
+            <thead>
+            <tr>
                 <th>#</th>
                 <th>제목</th>
                 <th>작성자</th>
                 <th>작성시간</th>
-                <th>요청 아이템</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="board : ${boards}">
-                <td th:text="${item.id}"></td>
-                <td th:text="${item.name}"></td>
-                <td th:text="${item.price}"></td>
-                <td th:text="${item.stockQuantity}"></td>
-                <td th:Text="${item.getMember().getName()}"></td>
-                <td th:if="${session.memberInfo.getMemberAuthority() == T(com.jpabook.jpashop.domain.MemberAuthority).ADMIN}"><a href="#" th:href="@{/items/{id}/edit (id=${item.id})}" class="btn btn-primary" role="button">수정</a></td>
+                <td th:text="${board.id}"></td>
+                <td th:text="${board.subject}"></td>
+                <td th:text="${board.member.name}"></td>
+                <td th:text="${board.createDate}"></td>
+                <td th:if="${session.memberInfo.memberAuthority== T(com.jpabook.jpashop.domain.member.MemberAuthority).ADMIN}">
+                    <a href="#" th:if="${board.member.name == session.memberInfo.name}"
+                       th:href="@{/members/{id}/delete (id=${member.id})}" class="btn btn-primary" role="button">삭제
+                    </a>
+                </td>
             </tr>
             </tbody>
+            <tfoot>
+                <tr>
+                    <a href="#" th:if="${session.memberInfo != null}" th:href="@{/boards/new}" class="btn btn-primary" role="button" style="float:right">작성</a>
+                </tr>
+            </tfoot>
         </table>
     </div>
     <div th:replace="fragments/footer :: footer"/>
-</div> <!-- /container -->
+</div> <!-- /container -->제
 </body>
 </html>

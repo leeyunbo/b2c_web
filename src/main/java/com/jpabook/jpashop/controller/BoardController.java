@@ -51,7 +51,7 @@ public class BoardController {
         Board board = Board.createBoard(member, BoardCategory.REQUESTS, form.getSubject(), form.getContent());
         boardService.saveBoard(board);
 
-        return "redirect:/requests";
+        return "redirect:/boards/requests";
     }
 
     /**

@@ -20,7 +20,9 @@
                 <td th:text="${item.price}"></td>
                 <td th:text="${item.stockQuantity}"></td>
                 <td th:Text="${item.getMember().getName()}"></td>
-                <td th:if="${session.memberInfo.getMemberAuthority() == T(com.jpabook.jpashop.domain.MemberAuthority).ADMIN}"><a href="#" th:href="@{/items/{id}/edit (id=${item.id})}" class="btn btn-primary" role="button">수정</a></td>
+                <td th:if="${session.memberInfo.getMemberAuthority() == T(com.jpabook.jpashop.domain.member.MemberAuthority).ADMIN}">
+                    <a href="#" th:href="@{/items/{id}/edit (id=${item.id})}" class="btn btn-primary" role="button">수정</a>
+                </td>
             </tr>
             </tbody>
         </table>

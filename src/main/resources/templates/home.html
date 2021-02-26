@@ -11,12 +11,12 @@
     <div th:replace="fragments/bodyHeader :: bodyHeader" />
 
     <div class="jumbotron"> <h2>쇼핑 서비스</h2>
-        <p th:if="${session.memberInfo.getMemberAuthority() == T(com.jpabook.jpashop.domain.MemberAuthority).ADMIN}" class="lead">관리자 메뉴</p>
-        <p th:if="${session.memberInfo.getMemberAuthority() == T(com.jpabook.jpashop.domain.MemberAuthority).ADMIN}">
+        <p th:if="${session.memberInfo.getMemberAuthority() == T(com.jpabook.jpashop.domain.member.MemberAuthority).ADMIN}" class="lead">관리자 메뉴</p>
+        <p th:if="${session.memberInfo.getMemberAuthority() == T(com.jpabook.jpashop.domain.member.MemberAuthority).ADMIN}">
             <a class="btn btn-lg btn-info" href="/members/new">회원 추가</a>
             <a class="btn btn-lg btn-info" href="/members">회원 목록 조회</a>
         </p>
-        <p th:if="${session.memberInfo.getMemberAuthority() == T(com.jpabook.jpashop.domain.MemberAuthority).ADMIN}">
+        <p th:if="${session.memberInfo.getMemberAuthority() == T(com.jpabook.jpashop.domain.member.MemberAuthority).ADMIN}">
         <a class="btn btn-lg btn-info" href="/orders">주문 내역 조회</a>
         <a class="btn btn-lg btn-info" href="/order">고객 주문 등록</a>
         </p>
@@ -36,8 +36,8 @@
 
         <p class="lead">커뮤니티 메뉴</p>
         <p>
-            <a class="btn btn-lg btn-info" href="/boards/request">상품 요청 게시판</a>
-            <a class="btn btn-lg btn-info" href="/boards/advertisement">상품 광고 게시판</a>
+            <a class="btn btn-lg btn-info" href="/boards/requests">상품 요청 게시판</a>
+            <a class="btn btn-lg btn-info" href="/boards/advertisements">상품 광고 게시판</a>
         </p>
     </div>
 
