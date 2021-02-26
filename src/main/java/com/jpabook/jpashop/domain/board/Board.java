@@ -38,6 +38,8 @@ public class Board {
     @JoinColumn(name = "member_id")
     private Member member;
 
+    private boolean isDelete = false;
+
     public static Board createBoard(Member member, BoardCategory boardCategory, String subject, String content) {
         Board board = new Board();
         board.setMember(member);

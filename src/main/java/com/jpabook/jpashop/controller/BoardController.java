@@ -87,6 +87,12 @@ public class BoardController {
     /**
      * 게시글 삭제
      */
+    @PostMapping("/boards/{boardId}/delete")
+    public String deleteBoard(@PathVariable("boardId") Long boardId) {
+        Board board = boardService.findBoard(boardId);
+        board.setDelete(!board.isDelete());
+        return "boards/requestBoardList";
+    }
 
 
     /**
