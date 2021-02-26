@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,7 +34,7 @@ public class BoardController {
      */
     @GetMapping("/boards/new")
     public String createForm(Model model) {
-        model.addAttribute("form", new BookForm());
+        model.addAttribute("form", new BoardForm());
         return "boards/createBoardsForm";
     }
 
@@ -52,6 +53,30 @@ public class BoardController {
 
         return "redirect:/requests";
     }
+
+    /**
+     * 게시글 수정
+     */
+    @GetMapping("/boards/{boardId}/update")
+    public String updateForm(@PathVariable("boardId") Long boardId, Model model) {
+        Board board = boardService.findBoard(boardId);
+
+        BoardForm boardForm = new BoardForm();
+        boardForm.setId(board.getId());
+        boardForm.setSubject(board.getSubject());
+        boardForm.setContent(board.getContent());
+        boardForm.setMember(board.getMember());
+        boardForm.setBoardCategory(board.getBoardCategory());
+
+        model.addAttribute("board", boardForm);
+
+        return "boards/updateBoardForm";
+    }
+
+
+    /**
+     * 게시글 삭제
+     */
 
 
     /**
