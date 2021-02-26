@@ -25,7 +25,7 @@
             <label for="grade">멤버등급</label>
             <select th:field="*{grade}" name="grade" id="grade" class="form-control">
                 <option value=""></option>
-                <option th:each="grade : ${T(com.jpabook.jpashop.domain.MemberGrade).values()}"
+                <option th:each="grade : ${T(com.jpabook.jpashop.domain.member.MemberGrade).values()}"
                         th:value="${grade.name()}"
                         th:text="${grade.name()}" >
                     option
