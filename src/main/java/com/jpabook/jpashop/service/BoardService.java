@@ -1,6 +1,8 @@
 package com.jpabook.jpashop.service;
 
 import com.jpabook.jpashop.domain.board.Board;
+import com.jpabook.jpashop.domain.board.BoardCategory;
+import com.jpabook.jpashop.domain.member.Member;
 import com.jpabook.jpashop.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,10 +25,18 @@ public class BoardService {
         return boardRepository.findOne(boardId);
     }
 
+    @Transactional
     public Long saveBoard(Board board) {
         boardRepository.save(board);
         return board.getId();
     }
 
 
+    @Transactional
+    public void updateBoard(Long id, String subject, String content, Member member, BoardCategory boardCategory) {
+        Board findItem = boardRepository.findOne(id);
+
+        // 영속성 진입
+        findItem.change(subject, content, member, boardCategory);
+    }
 }

@@ -73,6 +73,16 @@ public class BoardController {
         return "boards/updateBoardForm";
     }
 
+    /**
+     * 게시글 수정
+     */
+    @PostMapping("/boards/{boardId}/update")
+    public String updateForm(@PathVariable("boardId") Long boardId, BoardForm form) {
+        boardService.updateBoard(form.getId(), form.getSubject(), form.getContent(), form.getMember(), form.getBoardCategory());
+
+        return "boards/updateBoardForm";
+    }
+
 
     /**
      * 게시글 삭제

@@ -49,4 +49,10 @@ public class Board {
     }
 
 
+    public void change(String subject, String content, Member member, BoardCategory boardCategory) {
+        setSubject(subject);
+        setContent(content);
+        setMember(member);
+        setBoardCategory(boardCategory);
+    }
 }
