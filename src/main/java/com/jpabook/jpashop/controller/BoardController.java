@@ -78,7 +78,7 @@ public class BoardController {
      */
     @PostMapping("/boards/{boardId}/update")
     public String updateForm(@PathVariable("boardId") Long boardId, BoardForm form) {
-        boardService.updateBoard(form.getId(), form.getSubject(), form.getContent(), form.getMember(), form.getBoardCategory());
+        boardService.updateBoard(form.getId(), form.getSubject(), form.getContent(), form.getBoardCategory());
 
         return "boards/updateBoardForm";
     }

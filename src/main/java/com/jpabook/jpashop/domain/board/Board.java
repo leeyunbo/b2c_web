@@ -51,7 +51,7 @@ public class Board {
     }
 
 
-    public void change(String subject, String content, Member member, BoardCategory boardCategory) {
+    public void change(String subject, String content, BoardCategory boardCategory) {
         setSubject(subject);
         setContent(content);
         setMember(member);

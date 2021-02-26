@@ -33,10 +33,10 @@ public class BoardService {
 
 
     @Transactional
-    public void updateBoard(Long id, String subject, String content, Member member, BoardCategory boardCategory) {
+    public void updateBoard(Long id, String subject, String content, BoardCategory boardCategory) {
         Board findItem = boardRepository.findOne(id);
 
         // 영속성 진입
-        findItem.change(subject, content, member, boardCategory);
+        findItem.change(subject, content, boardCategory);
     }
 }
