@@ -77,8 +77,8 @@ public class BoardController {
      * 게시글 수정
      */
     @PostMapping("/boards/{boardId}/update")
-    public String updateForm(@PathVariable("boardId") Long boardId, BoardForm form) {
-        boardService.updateBoard(form.getId(), form.getSubject(), form.getContent(), form.getBoardCategory());
+    public String updateBoard(@PathVariable("boardId") Long boardId, BoardForm form) {
+        boardService.updateBoard(boardId, form.getSubject(), form.getContent(), form.getBoardCategory());
 
         return "boards/requestBoardList";
     }
@@ -91,6 +91,7 @@ public class BoardController {
     public String deleteBoard(@PathVariable("boardId") Long boardId) {
         Board board = boardService.findBoard(boardId);
         board.setDelete(!board.isDelete());
+
         return "boards/requestBoardList";
     }
 
