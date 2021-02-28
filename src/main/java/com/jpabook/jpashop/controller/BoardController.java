@@ -89,10 +89,9 @@ public class BoardController {
      */
     @PostMapping("/boards/{boardId}/delete")
     public String deleteBoard(@PathVariable("boardId") Long boardId) {
-        Board board = boardService.findBoard(boardId);
-        board.setDelete(!board.isDelete());
+        boardService.deleteBoard(boardId);
 
-        return "boards/requestBoardList";
+        return "redirect:/boards/requests";
     }
 
 

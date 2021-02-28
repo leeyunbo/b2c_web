@@ -57,4 +57,8 @@ public class Board {
         setMember(member);
         setBoardCategory(boardCategory);
     }
+
+    public void delete() {
+        setDelete(true);
+    }
 }

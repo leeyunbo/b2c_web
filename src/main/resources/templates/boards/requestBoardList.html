@@ -10,24 +10,23 @@
                 <th>제목</th>
                 <th>작성자</th>
                 <th>작성시간</th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="board : ${boards}" th:if="${board.isDelete() == false}">
+            <tr th:each="board : ${boards}" th:if="${board.isDelete() == false}" >
                 <td th:text="${board.id}"></td>
                 <td th:text="${board.subject}"></td>
                 <td th:text="${board.member.name}"></td>
                 <td th:text="${board.createDate}"></td>
-                <td th:if="${session.memberInfo.memberAuthority== T(com.jpabook.jpashop.domain.member.MemberAuthority).ADMIN}">
-                    <a href="#" th:if="${board.member.name == session.memberInfo.name}"
-                       th:href="@{/boards/{id}/delete (id=${board.id})}" class="btn btn-primary" role="button">삭제
-                    </a>
+                <td th:if="${board.member.name == session.memberInfo.name}">
+                    <a href="#" th:href="'javascript:cancel('+${board.id}+')'" class="btn btn-danger">삭제</a>
                 </td>
             </tr>
             </tbody>
             <tfoot>
                 <tr>
-                    <a href="#" th:if="${session.memberInfo != null}" th:href="@{/boards/new}" class="btn btn-primary" role="button" style="float:right">작성</a>
+                    <a href="#" th:if="${session.memberInfo != null}" th:href="@{/boards/new}" class="btn btn-danger" style="float:right">작성</a>
                 </tr>
             </tfoot>
         </table>
@@ -35,4 +34,14 @@
     <div th:replace="fragments/footer :: footer"/>
 </div> <!-- /container -->제
 </body>
+<script>
+
+    function cancel(id) {
+        var form = document.createElement("form");
+        form.setAttribute("method", "post");
+        form.setAttribute("action", "/boards/" + id + "/delete");
+        document.body.appendChild(form);
+        form.submit();
+    }
+</script>
 </html>

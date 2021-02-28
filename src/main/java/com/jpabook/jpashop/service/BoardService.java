@@ -39,4 +39,12 @@ public class BoardService {
         // 영속성 진입
         findItem.change(subject, content, boardCategory);
     }
+
+    @Transactional
+    public void deleteBoard(Long id) {
+        Board findItem = boardRepository.findOne(id);
+
+        // 영속성 진입
+        findItem.delete();
+    }
 }
