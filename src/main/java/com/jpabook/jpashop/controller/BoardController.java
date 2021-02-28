@@ -68,7 +68,7 @@ public class BoardController {
         boardForm.setMember(board.getMember());
         boardForm.setBoardCategory(board.getBoardCategory());
 
-        model.addAttribute("board", boardForm);
+        model.addAttribute("form", boardForm);
 
         return "boards/updateBoardForm";
     }
@@ -80,7 +80,7 @@ public class BoardController {
     public String updateForm(@PathVariable("boardId") Long boardId, BoardForm form) {
         boardService.updateBoard(form.getId(), form.getSubject(), form.getContent(), form.getBoardCategory());
 
-        return "boards/updateBoardForm";
+        return "boards/requestBoardList";
     }
 
 

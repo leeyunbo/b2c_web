@@ -20,7 +20,7 @@
                 <td th:text="${board.createDate}"></td>
                 <td th:if="${session.memberInfo.memberAuthority== T(com.jpabook.jpashop.domain.member.MemberAuthority).ADMIN}">
                     <a href="#" th:if="${board.member.name == session.memberInfo.name}"
-                       th:href="@{/members/{id}/delete (id=${member.id})}" class="btn btn-primary" role="button">삭제
+                       th:href="@{/boards/{id}/delete (id=${board.id})}" class="btn btn-primary" role="button">삭제
                     </a>
                 </td>
             </tr>
