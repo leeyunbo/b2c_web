@@ -8,5 +8,6 @@ import lombok.Setter;
 public class BoardSearch {
 
     private String memberName;
-    private String boardName;
+    private String subject;
+    private BoardCategory boardCategory;
 }

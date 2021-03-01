@@ -33,7 +33,7 @@ public class BoardController {
      * @return
      */
     @GetMapping("/boards/new")
-    public String createForm(Model model) {
+    public String createForm(@PathVariable("category") BoardCategory category, Model model) {
         model.addAttribute("form", new BoardForm());
         return "boards/createBoardsForm";
     }
@@ -112,18 +112,14 @@ public class BoardController {
      * @return
      */
     @GetMapping("/boards/requests")
-    public String requestList(Model model) {
+    public String requestList(Model model, HttpServletRequest httpServletRequest) {
+        BoardCategory boardCategory = BoardCategory.valueOf(httpServletRequest.getParameter("category"));
+
         List<Board> boards = boardService.findAll();
         model.addAttribute("boards", boards);
+
+
         return "/boards/requestBoardList";
     }
 
-    /**
-     * 광고 게시판 리스트 가져오기
-     * @return
-     */
-    @GetMapping("/boards/advertisements")
-    public String advertisementList() {
-        return "";
-    }
 }
