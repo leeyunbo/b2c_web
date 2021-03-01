@@ -33,7 +33,7 @@ public class BoardController {
      * @return
      */
     @GetMapping("/boards/new")
-    public String createForm(@PathVariable("category") BoardCategory category, Model model) {
+    public String createForm(Model model) {
         model.addAttribute("form", new BoardForm());
         return "boards/createBoardsForm";
     }
