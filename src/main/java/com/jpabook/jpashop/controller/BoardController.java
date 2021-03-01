@@ -4,7 +4,6 @@ import com.jpabook.jpashop.domain.board.Board;
 import com.jpabook.jpashop.domain.board.BoardCategory;
 import com.jpabook.jpashop.domain.board.BoardSearch;
 import com.jpabook.jpashop.domain.form.BoardForm;
-import com.jpabook.jpashop.domain.form.BookForm;
 import com.jpabook.jpashop.domain.member.Member;
 import com.jpabook.jpashop.domain.session.MemberInfo;
 import com.jpabook.jpashop.service.BoardService;
@@ -15,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -51,7 +51,7 @@ public class BoardController {
         Board board = Board.createBoard(member, BoardCategory.REQUESTS, form.getSubject(), form.getContent());
         boardService.saveBoard(board);
 
-        return "redirect:/boards/requests";
+        return "forward:/boards";
     }
 
     /**
@@ -91,7 +91,7 @@ public class BoardController {
     public String updateBoard(@PathVariable("boardId") Long boardId, BoardForm form) {
         boardService.updateBoard(boardId, form.getSubject(), form.getContent(), form.getBoardCategory());
 
-        return "redirect:/boards/requests";
+        return "forward:/boards";
     }
 
 
@@ -102,7 +102,7 @@ public class BoardController {
     public String deleteBoard(@PathVariable("boardId") Long boardId) {
         boardService.deleteBoard(boardId);
 
-        return "redirect:/boards/requests";
+        return "forward:/boards";
     }
 
 
@@ -111,15 +111,16 @@ public class BoardController {
      * @param model
      * @return
      */
-    @GetMapping("/boards/requests")
-    public String requestList(Model model, HttpServletRequest httpServletRequest) {
-        BoardCategory boardCategory = BoardCategory.valueOf(httpServletRequest.getParameter("category"));
+    @GetMapping("/boards")
+    public String requestList(Model model, @RequestParam(value = "category") String category) {
+        BoardCategory boardCategory = BoardCategory.valueOf(category);
 
-        List<Board> boards = boardService.findAll();
+        BoardSearch boardSearch = new BoardSearch();
+        boardSearch.setBoardCategory(boardCategory);
+
+        List<Board> boards = boardService.findAll(boardSearch);
         model.addAttribute("boards", boards);
 
-
-        return "/boards/requestBoardList";
+        return "boards/boardList";
     }
-
 }

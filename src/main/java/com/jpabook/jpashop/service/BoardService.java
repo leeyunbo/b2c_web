@@ -2,6 +2,7 @@ package com.jpabook.jpashop.service;
 
 import com.jpabook.jpashop.domain.board.Board;
 import com.jpabook.jpashop.domain.board.BoardCategory;
+import com.jpabook.jpashop.domain.board.BoardSearch;
 import com.jpabook.jpashop.domain.member.Member;
 import com.jpabook.jpashop.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,8 +18,8 @@ public class BoardService {
 
     private final BoardRepository boardRepository;
 
-    public List<Board> findAll() {
-        return boardRepository.findAll();
+    public List<Board> findAll(BoardSearch boardSearch) {
+        return boardRepository.findAll(boardSearch);
     }
 
     public Board findBoard(Long boardId) {
