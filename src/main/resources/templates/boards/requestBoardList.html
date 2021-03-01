@@ -16,7 +16,9 @@
             <tbody>
             <tr th:each="board : ${boards}" th:if="${board.isDelete() == false}" >
                 <td th:text="${board.id}"></td>
-                <td th:text="${board.subject}"></td>
+                <td>
+                    <a href="#" th:text="${board.subject}" th:href="@{/boards/{id} (id=${board.id})}"></a>
+                </td>
                 <td th:text="${board.member.name}"></td>
                 <td th:text="${board.createDate}"></td>
                 <td th:if="${board.member.name == session.memberInfo.name}">
@@ -26,7 +28,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <a href="#" th:if="${session.memberInfo != null}" th:href="@{/boards/new}" class="btn btn-danger" style="float:right">작성</a>
+                    <a href="#" th:if="${session.memberInfo != null}" th:href="@{/boards/new}" class="btn btn-primary" style="float:right">작성</a>
                 </tr>
             </tfoot>
         </table>

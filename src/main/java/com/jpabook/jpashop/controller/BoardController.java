@@ -55,6 +55,17 @@ public class BoardController {
     }
 
     /**
+     * 게시글 상세 보기
+     */
+    @GetMapping("/boards/{boardId}")
+    public String getBoardForm(@PathVariable("boardId") Long boardId, Model model) {
+        Board board = boardService.findBoard(boardId);
+
+        model.addAttribute("form", board);
+        return "/boards/getBoardForm";
+    }
+
+    /**
      * 게시글 수정
      */
     @GetMapping("/boards/{boardId}/update")
@@ -80,7 +91,7 @@ public class BoardController {
     public String updateBoard(@PathVariable("boardId") Long boardId, BoardForm form) {
         boardService.updateBoard(boardId, form.getSubject(), form.getContent(), form.getBoardCategory());
 
-        return "boards/requestBoardList";
+        return "redirect:/boards/requests";
     }
 
 
