@@ -37,10 +37,10 @@ public class BoardRepository {
             Predicate subject = cb.like(b.get("subject"), "%" + boardSearch.getSubject() + "%");
             criteria.add(subject);
         }
-
-        // 카테고리 필수 지정
-        Predicate category = cb.equal(b.get("boardCategory"), boardSearch.getBoardCategory());
-        criteria.add(category);
+        else if(boardSearch.getBoardCategory() != null){
+            Predicate category = cb.equal(b.get("boardCategory"), boardSearch.getBoardCategory());
+            criteria.add(category);
+        }
 
         cq.where(cb.and(criteria.toArray(new Predicate[criteria.size()])));
         TypedQuery<Board> query = em.createQuery(cq).setMaxResults(1000);

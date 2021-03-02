@@ -51,7 +51,7 @@ public class BoardController {
         Board board = Board.createBoard(member, BoardCategory.REQUESTS, form.getSubject(), form.getContent());
         boardService.saveBoard(board);
 
-        return "forward:/boards";
+        return "redirect:/boards";
     }
 
     /**
@@ -91,7 +91,7 @@ public class BoardController {
     public String updateBoard(@PathVariable("boardId") Long boardId, BoardForm form) {
         boardService.updateBoard(boardId, form.getSubject(), form.getContent(), form.getBoardCategory());
 
-        return "forward:/boards";
+        return "redirect:/boards";
     }
 
 
@@ -102,7 +102,7 @@ public class BoardController {
     public String deleteBoard(@PathVariable("boardId") Long boardId) {
         boardService.deleteBoard(boardId);
 
-        return "forward:/boards";
+        return "redirect:/boards";
     }
 
 
@@ -111,12 +111,13 @@ public class BoardController {
      * @param model
      * @return
      */
+    //, @RequestParam(value = "category") String category
     @GetMapping("/boards")
-    public String requestList(Model model, @RequestParam(value = "category") String category) {
-        BoardCategory boardCategory = BoardCategory.valueOf(category);
+    public String getBoards(Model model) {
+ //       BoardCategory boardCategory = BoardCategory.valueOf(category);
 
-        BoardSearch boardSearch = new BoardSearch();
-        boardSearch.setBoardCategory(boardCategory);
+     BoardSearch boardSearch = new BoardSearch();
+ //       boardSearch.setBoardCategory(boardCategory);
 
         List<Board> boards = boardService.findAll(boardSearch);
         model.addAttribute("boards", boards);
