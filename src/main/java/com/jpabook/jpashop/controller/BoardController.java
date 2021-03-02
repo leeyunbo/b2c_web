@@ -33,8 +33,11 @@ public class BoardController {
      * @return
      */
     @GetMapping("/boards/new")
-    public String createForm(Model model) {
-        model.addAttribute("form", new BoardForm());
+    public String createForm(Model model, @RequestParam(value = "category", required = false) String category) {
+        BoardForm form = new BoardForm();
+        form.setBoardCategory(BoardCategory.valueOf(category));
+
+        model.addAttribute("form", form);
         return "boards/createBoardsForm";
     }
 
@@ -48,10 +51,10 @@ public class BoardController {
         MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
         Member member = memberService.findOne(memberInfo.getId());
 
-        Board board = Board.createBoard(member, BoardCategory.REQUESTS, form.getSubject(), form.getContent());
+        Board board = Board.createBoard(member, form.getBoardCategory(), form.getSubject(), form.getContent());
         boardService.saveBoard(board);
 
-        return "redirect:/boards";
+        return "redirect:/boards?category=" + form.getBoardCategory().name();
     }
 
     /**

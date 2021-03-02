@@ -10,6 +10,7 @@
 <div class="container">
     <div th:replace="fragments/bodyHeader :: bodyHeader"/>
     <form action="#" th:action="@{/boards/new}" th:object="${form}" method="post">
+        <input type="hidden" th:field="*{boardCategory}" />
         <div class="form-group">
             <label th:for="subject">제목</label>
             <input type="text" th:field="*{subject}" class="form-control" placeholder="제목 입력하세요"/>
