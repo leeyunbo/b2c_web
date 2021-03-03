@@ -1,8 +1,6 @@
 package com.jpabook.jpashop.controller;
 
-import com.jpabook.jpashop.domain.board.Board;
-import com.jpabook.jpashop.domain.board.BoardCategory;
-import com.jpabook.jpashop.domain.board.BoardSearch;
+import com.jpabook.jpashop.domain.board.*;
 import com.jpabook.jpashop.domain.form.BoardForm;
 import com.jpabook.jpashop.domain.member.Member;
 import com.jpabook.jpashop.domain.session.MemberInfo;
@@ -125,5 +123,19 @@ public class BoardController {
         model.addAttribute("boards", boards);
 
         return "boards/boardList";
+    }
+
+    @PostMapping("/boards/{boardId}/comment")
+    public String createComment(@PathVariable("boardId") Long boardId,  CommentForm commentForm, HttpServletRequest httpServletRequest) {
+        Board board = boardService.findBoard(boardId);
+
+        MemberInfo memberInfo = (MemberInfo) httpServletRequest.getSession().getAttribute("memberInfo");
+        Member member = memberService.findOne(memberInfo.getId());
+
+
+        Comment comment = new Comment();
+        comment.createComment(board, member, commentForm.getContent());
+
+        boardService.addComment(comment);
     }
 }

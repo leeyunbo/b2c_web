@@ -3,6 +3,7 @@ package com.jpabook.jpashop.service;
 import com.jpabook.jpashop.domain.board.Board;
 import com.jpabook.jpashop.domain.board.BoardCategory;
 import com.jpabook.jpashop.domain.board.BoardSearch;
+import com.jpabook.jpashop.domain.board.Comment;
 import com.jpabook.jpashop.domain.member.Member;
 import com.jpabook.jpashop.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -47,5 +48,13 @@ public class BoardService {
 
         // 영속성 진입
         findItem.delete();
+    }
+
+    @Transactional
+    public void addComment(Long boardId, Comment comment) {
+        Board findItem = boardRepository.findOne(boardId);
+
+        // 영속성 진입
+        findItem.addComment(comment);
     }
 }

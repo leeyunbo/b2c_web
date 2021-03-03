@@ -61,4 +61,8 @@ public class Board {
     public void delete() {
         setDelete(true);
     }
+
+    public void addComment(Comment comment) {
+        getComments().add(comment);
+    }
 }

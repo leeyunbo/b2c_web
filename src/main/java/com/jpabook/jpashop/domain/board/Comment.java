@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @Entity
 @Getter
 @Setter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Table(name = "comments")
 public class Comment {
     @Id
@@ -32,4 +32,11 @@ public class Comment {
     private Member member;
 
     private String content;
+
+    public void createComment(Board board, Member member, String content) {
+        setBoard(board);
+        setContent(content);
+        setMember(member);
+        setCreateDate(LocalDateTime.now());
+    }
 }
