@@ -136,6 +136,6 @@ public class BoardController {
         Comment comment = new Comment();
         comment.createComment(board, member, commentForm.getContent());
 
-        boardService.addComment(comment);
+        boardService.createComment(comment);
     }
 }

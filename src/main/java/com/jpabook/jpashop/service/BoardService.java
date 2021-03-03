@@ -51,8 +51,8 @@ public class BoardService {
     }
 
     @Transactional
-    public void addComment(Long boardId, Comment comment) {
-        Board findItem = boardRepository.findOne(boardId);
+    public void createComment(Comment comment) {
+        Board findItem = boardRepository.findOne(comment.getBoard().getId());
 
         // 영속성 진입
         findItem.addComment(comment);
