@@ -23,5 +23,7 @@ public class BoardForm {
     @Enumerated(EnumType.STRING)
     private BoardCategory boardCategory;
 
+    private List<Comment> comments;
+
     private Member member;
 }

@@ -22,9 +22,29 @@
         <div>
             <a href="#" th:href="@{/boards/{id}/update (id=${boardId})}" class="btn btn-primary" role="button">수정</a>
         </div>
+
+        <table class="table table-striped">
+            <tbody>
+            <tr th:each="comment : *{comments}" >
+                <td th:text="${comment.member.name}"></td>
+                <td th:text="${comment.content}"></td>
+                <td th:text="${comment.createDate}"></td>
+            </tr>
+            </tbody>
+
+            <tfoot>
+            <form action="#" th:action="@{/boards/{id}/comment (id=${boardId})}" th:object="${form}" method="post">
+                <div class="form-group">
+                    <label th:for="content">내용</label>
+                    <textarea th:field="*{content}" class="form-control" placeholder="내용 입력하세요" style="height: 80px"/>
+                </div>
+                <button type="submit" class="btn btn-primary">작성</button>
+            </form>
+            </tfoot>
+        </table>
+
     </form>
     <br/>
-
     <div th:replace="fragments/footer :: footer" />
 </div> <!-- /container -->
 </body>
