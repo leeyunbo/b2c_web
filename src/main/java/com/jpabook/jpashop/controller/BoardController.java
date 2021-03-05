@@ -133,6 +133,6 @@ public class BoardController {
 
         boardService.createComment(boardId, form.getContent(), member);
 
-        return "redirect:boards/" + boardId;
+        return "redirect:";
     }
 }

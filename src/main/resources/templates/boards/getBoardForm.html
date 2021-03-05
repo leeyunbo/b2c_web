@@ -27,24 +27,25 @@
 
         <table class="table table-striped">
             <tbody>
+            <label>댓글</label>
             <tr th:each="comment : *{comments}" >
                 <td th:text="${comment.member.name}"></td>
                 <td th:text="${comment.content}"></td>
                 <td th:text="${comment.createDate}"></td>
             </tr>
             </tbody>
-
-            <tfoot>
-            <form action="#" th:action="@{/boards/{id}/comment (id=${boardId})}" th:object="${commentForm}" method="post">
-                <div class="form-group">
-                    <textarea th:field="*{content}" class="form-control" placeholder="내용 입력하세요"/>
-                    <button type="submit" class="btn btn-primary" style="float:right">작성</button>
-                </div>
-            </form>
-            </tfoot>
         </table>
-
     </form>
+
+    <table>
+        <form th:action="@{/boards/{id}/comment (id=${boardId})}" th:object="${commentForm}" method="post">
+            <div class="form-group">
+                <textarea th:field="*{content}" class="form-control" placeholder="내용 입력하세요"/>
+                <button type="submit" class="btn btn-primary" style="float:right">작성</button>
+            </div>
+        </form>
+    </table>
+
     <br/>
     <div th:replace="fragments/footer :: footer" />
 </div> <!-- /container -->
