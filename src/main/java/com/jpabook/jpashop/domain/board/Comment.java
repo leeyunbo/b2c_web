@@ -33,10 +33,13 @@ public class Comment {
 
     private String content;
 
-    public void createComment(Board board, Member member, String content) {
-        setBoard(board);
-        setContent(content);
-        setMember(member);
-        setCreateDate(LocalDateTime.now());
+    public static Comment createComment(Board board, Member member, String content) {
+        Comment comment = new Comment();
+        comment.setBoard(board);
+        comment.setContent(content);
+        comment.setMember(member);
+        comment.setCreateDate(LocalDateTime.now());
+
+        return comment;
     }
 }

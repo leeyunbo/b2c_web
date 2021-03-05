@@ -2,6 +2,7 @@ package com.jpabook.jpashop.repository;
 
 import com.jpabook.jpashop.domain.board.Board;
 import com.jpabook.jpashop.domain.board.BoardSearch;
+import com.jpabook.jpashop.domain.board.Comment;
 import com.jpabook.jpashop.domain.order.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -54,4 +55,5 @@ public class BoardRepository {
     public void save(Board board) {
         em.persist(board);
     }
+
 }

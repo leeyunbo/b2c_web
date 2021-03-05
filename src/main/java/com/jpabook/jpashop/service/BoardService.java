@@ -1,10 +1,9 @@
 package com.jpabook.jpashop.service;
 
-import com.jpabook.jpashop.domain.board.Board;
-import com.jpabook.jpashop.domain.board.BoardCategory;
-import com.jpabook.jpashop.domain.board.BoardSearch;
-import com.jpabook.jpashop.domain.board.Comment;
+import com.jpabook.jpashop.domain.board.*;
+import com.jpabook.jpashop.domain.form.BoardForm;
 import com.jpabook.jpashop.domain.member.Member;
+import com.jpabook.jpashop.domain.session.MemberInfo;
 import com.jpabook.jpashop.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -51,10 +50,10 @@ public class BoardService {
     }
 
     @Transactional
-    public void createComment(Comment comment) {
-        Board findItem = boardRepository.findOne(comment.getBoard().getId());
+    public void createComment(Long boardId, CommentForm form, Member member) {
+        Board board = boardRepository.findOne(boardId);
+        Comment comment = Comment.createComment(board, member, form.getContent());
 
-        // 영속성 진입
-        findItem.addComment(comment);
+        board.getComments().add(comment);
     }
 }

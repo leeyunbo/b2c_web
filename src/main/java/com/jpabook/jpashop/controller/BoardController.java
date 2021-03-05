@@ -63,6 +63,7 @@ public class BoardController {
         Board board = boardService.findBoard(boardId);
 
         model.addAttribute("form", board);
+        model.addAttribute("commentForm", new CommentForm());
         return "/boards/getBoardForm";
     }
 
@@ -126,16 +127,12 @@ public class BoardController {
     }
 
     @PostMapping("/boards/{boardId}/comment")
-    public String createComment(@PathVariable("boardId") Long boardId,  CommentForm commentForm, HttpServletRequest httpServletRequest) {
-        Board board = boardService.findBoard(boardId);
-
+    public String createComment(@PathVariable("boardId") Long boardId,  CommentForm form, HttpServletRequest httpServletRequest) {
         MemberInfo memberInfo = (MemberInfo) httpServletRequest.getSession().getAttribute("memberInfo");
         Member member = memberService.findOne(memberInfo.getId());
 
+        boardService.createComment(boardId, form, member);
 
-        Comment comment = new Comment();
-        comment.createComment(board, member, commentForm.getContent());
-
-        boardService.createComment(comment);
+        return "redirect:boards/" + boardId;
     }
 }
