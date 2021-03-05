@@ -131,7 +131,7 @@ public class BoardController {
         MemberInfo memberInfo = (MemberInfo) httpServletRequest.getSession().getAttribute("memberInfo");
         Member member = memberService.findOne(memberInfo.getId());
 
-        boardService.createComment(boardId, form, member);
+        boardService.createComment(boardId, form.getContent(), member);
 
         return "redirect:boards/" + boardId;
     }

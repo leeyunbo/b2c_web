@@ -3,6 +3,8 @@ package com.jpabook.jpashop.service;
 import com.jpabook.jpashop.domain.Item.Book;
 import com.jpabook.jpashop.domain.board.Board;
 import com.jpabook.jpashop.domain.board.BoardCategory;
+import com.jpabook.jpashop.domain.board.Comment;
+import com.jpabook.jpashop.domain.board.CommentForm;
 import com.jpabook.jpashop.domain.member.Member;
 import com.jpabook.jpashop.domain.member.MemberAuthority;
 import com.jpabook.jpashop.repository.ItemRepository;
@@ -75,5 +77,38 @@ public class BoardServiceTest {
         assertEquals(afterBoard.getContent(), "next content");
         assertEquals(afterBoard.getSubject(), "next subject");
         assertEquals(afterBoard.getBoardCategory(), BoardCategory.REQUESTS);
+    }
+
+    @Test
+    public void 댓글등록() {
+        //given
+        Member member = new Member();
+        member.setName("lee yun bok");
+        member.setMemberAuthority(MemberAuthority.ADMIN);
+        memberService.join(member);
+
+        Board board = new Board();
+        board.setSubject("before subject");
+        board.setContent("before content");
+        board.setBoardCategory(BoardCategory.ADVERTISEMENTS);
+        board.setMember(member);
+        boardService.saveBoard(board);
+
+        String content = "댓글 내용";
+
+        boardService.createComment(board.getId(), content, member);
+        boardService.createComment(board.getId(), content, member);
+        boardService.createComment(board.getId(), content, member);
+        boardService.createComment(board.getId(), content, member);
+        boardService.createComment(board.getId(), content, member);
+        boardService.createComment(board.getId(), content, member);
+
+        Board board1 = boardService.findBoard(board.getId());
+        assertEquals(board1.getComments().size(), 6);
+
+        for(Comment comment : board1.getComments()) {
+            System.out.println(comment.getContent());
+        }
+
     }
 }

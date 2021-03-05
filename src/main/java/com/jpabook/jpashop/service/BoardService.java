@@ -50,9 +50,9 @@ public class BoardService {
     }
 
     @Transactional
-    public void createComment(Long boardId, CommentForm form, Member member) {
+    public void createComment(Long boardId, String content, Member member) {
         Board board = boardRepository.findOne(boardId);
-        Comment comment = Comment.createComment(board, member, form.getContent());
+        Comment comment = Comment.createComment(board, member, content);
 
         board.getComments().add(comment);
     }

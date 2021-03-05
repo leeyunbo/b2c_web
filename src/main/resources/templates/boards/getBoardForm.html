@@ -38,7 +38,7 @@
             <form action="#" th:action="@{/boards/{id}/comment (id=${boardId})}" th:object="${commentForm}" method="post">
                 <div class="form-group">
                     <textarea th:field="*{content}" class="form-control" placeholder="내용 입력하세요"/>
-                    <button type="submit" class="btn btn-primary">작성</button>
+                    <button type="submit" class="btn btn-primary" style="float:right">작성</button>
                 </div>
             </form>
             </tfoot>
