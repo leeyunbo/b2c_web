@@ -10,4 +10,5 @@ public class BoardSearch {
     private String memberName;
     private String subject;
     private BoardCategory boardCategory;
+    private Integer page;
 }

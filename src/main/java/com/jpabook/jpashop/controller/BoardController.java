@@ -114,11 +114,16 @@ public class BoardController {
      * @return
      */
     @GetMapping("/boards")
-    public String getBoards(Model model, @RequestParam(value = "category", required = false) String category) {
-        BoardCategory boardCategory = BoardCategory.valueOf(category);
-
+    public String getBoards(Model model, @RequestParam(value = "category", required = false) String category, @RequestParam(value = "page", required = false) Integer page) {
         BoardSearch boardSearch = new BoardSearch();
-        boardSearch.setBoardCategory(boardCategory);
+
+        if(category != null) {
+            boardSearch.setBoardCategory(BoardCategory.valueOf(category));
+        }
+
+        if(page != null) {
+            boardSearch.setPage(page);
+        }
 
         List<Board> boards = boardService.findAll(boardSearch);
         model.addAttribute("boards", boards);
