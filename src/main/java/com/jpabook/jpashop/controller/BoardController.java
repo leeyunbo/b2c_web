@@ -121,9 +121,8 @@ public class BoardController {
             boardSearch.setBoardCategory(BoardCategory.valueOf(category));
         }
 
-        if(page != null) {
-            boardSearch.setPage(page);
-        }
+        //페이지 필수
+        boardSearch.setPage(page);
 
         List<Board> boards = boardService.findAll(boardSearch);
         model.addAttribute("boards", boards);

@@ -38,13 +38,15 @@ public class BoardRepository {
             Predicate subject = cb.like(b.get("subject"), "%" + boardSearch.getSubject() + "%");
             criteria.add(subject);
         }
+        // 카테고리로 검색
         else if(boardSearch.getBoardCategory() != null){
             Predicate category = cb.equal(b.get("boardCategory"), boardSearch.getBoardCategory());
             criteria.add(category);
         }
 
+        // 페이지 조건 추가
         cq.where(cb.and(criteria.toArray(new Predicate[criteria.size()])));
-        TypedQuery<Board> query = em.createQuery(cq).setMaxResults(1000);
+        TypedQuery<Board> query = em.createQuery(cq).setFirstResult(boardSearch.getPage()-1).setMaxResults(10);
         return query.getResultList();
     }
 
