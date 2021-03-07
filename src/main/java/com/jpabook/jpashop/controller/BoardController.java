@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -119,6 +120,10 @@ public class BoardController {
 
         if(category != null) {
             boardSearch.setBoardCategory(BoardCategory.valueOf(category));
+        }
+
+        if(page == null) {
+            page = 1;
         }
 
         //페이지 필수
