@@ -46,7 +46,7 @@ public class BoardRepository {
 
         // 페이지 조건 추가
         cq.where(cb.and(criteria.toArray(new Predicate[criteria.size()])));
-        TypedQuery<Board> query = em.createQuery(cq).setFirstResult(boardSearch.getPage()-1).setMaxResults(10);
+        TypedQuery<Board> query = em.createQuery(cq).setFirstResult((boardSearch.getPage()-1) * 10).setMaxResults(10);
         return query.getResultList();
     }
 

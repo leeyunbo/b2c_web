@@ -32,6 +32,13 @@
                 </tr>
             </tfoot>
         </table>
+        
+        <a href="#" th:text="1" th:href="@{/boards (category=${param.category[0]}, page=${1})}"></a>
+        <a href="#" th:text="2" th:href="@{/boards (category=${param.category[0]}, page=${2})}"></a>
+        <a href="#" th:text="3" th:href="@{/boards (category=${param.category[0]}, page=${3})}"></a>
+        <a href="#" th:text="4" th:href="@{/boards (category=${param.category[0]}, page=${4})}"></a>
+        <a href="#" th:text="5" th:href="@{/boards (category=${param.category[0]}, page=${5})}"></a>
+
     </div>
     <div th:replace="fragments/footer :: footer"/>
 </div> <!-- /container -->
