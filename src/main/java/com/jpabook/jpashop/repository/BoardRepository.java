@@ -50,6 +50,10 @@ public class BoardRepository {
         return query.getResultList();
     }
 
+    public List<Board> findAll() {
+        return em.createQuery("select b from Board b", Board.class).getResultList();
+    }
+
     public Board findOne(Long boardId) {
         return em.find(Board.class, boardId);
     }
