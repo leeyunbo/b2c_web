@@ -130,8 +130,11 @@ public class BoardController {
         boardSearch.setPage(page);
 
         List<Board> boards = boardService.findAll(boardSearch);
+        int size = boardService.findAll().size();
+
         model.addAttribute("boards", boards);
         model.addAttribute("page", boardSearch.getPage());
+        model.addAttribute("size", size);
 
         return "boards/boardList";
     }
