@@ -40,6 +40,8 @@ public class Board {
 
     private boolean isDelete = false;
 
+    private String itemName;
+
     public static Board createBoard(Member member, BoardCategory boardCategory, String subject, String content) {
         Board board = new Board();
         board.setMember(member);

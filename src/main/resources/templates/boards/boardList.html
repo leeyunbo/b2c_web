@@ -10,6 +10,7 @@
                 <th>제목</th>
                 <th>작성자</th>
                 <th>작성시간</th>
+                <th th:if="${param.category[0] == 'REQUESTS'}">요청상품</th>
                 <th></th>
             </tr>
             </thead>
@@ -21,6 +22,7 @@
                 </td>
                 <td th:text="${board.member.name}"></td>
                 <td th:text="${board.createDate}"></td>
+                <td th:if="${param.category[0] == 'REQUESTS'}" th:text="${board.itemName}"></td>
                 <td th:if="${board.member.name == session.memberInfo.name}">
                     <a href="#" th:href="'javascript:cancel('+${board.id}+')'" class="btn btn-danger">삭제</a>
                 </td>

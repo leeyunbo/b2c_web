@@ -26,4 +26,6 @@ public class BoardForm {
     private List<Comment> comments;
 
     private Member member;
+
+    private String itemName;
 }
