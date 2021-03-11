@@ -16,7 +16,7 @@
             <input type="text" th:field="*{subject}" class="form-control" placeholder="제목 입력하세요"/>
         </div>
 
-        <div th:if="${form.boardCategory == 'REQUESTS'}"class="form-group">
+        <div th:if="${param.category[0] == 'REQUESTS'}"class="form-group">
             <label th:for="content">요청할 상품</label>
             <input type="text" th:field="*{itemName}" class="form-control" placeholder="상품 이름을 입력하세요"/>
         </div>

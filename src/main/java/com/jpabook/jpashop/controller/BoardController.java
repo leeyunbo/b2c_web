@@ -50,7 +50,7 @@ public class BoardController {
         MemberInfo memberInfo = (MemberInfo) session.getAttribute("memberInfo");
         Member member = memberService.findOne(memberInfo.getId());
 
-        Board board = Board.createBoard(member, form.getBoardCategory(), form.getSubject(), form.getContent());
+        Board board = Board.createBoard(member, form.getBoardCategory(), form.getSubject(), form.getContent(), form.getItemName());
         boardService.saveBoard(board);
 
         return "redirect:/boards?category=" + form.getBoardCategory().name();

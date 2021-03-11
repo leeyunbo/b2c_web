@@ -42,13 +42,14 @@ public class Board {
 
     private String itemName;
 
-    public static Board createBoard(Member member, BoardCategory boardCategory, String subject, String content) {
+    public static Board createBoard(Member member, BoardCategory boardCategory, String subject, String content, String itemName) {
         Board board = new Board();
         board.setMember(member);
         board.setBoardCategory(boardCategory);
         board.setSubject(subject);
         board.setContent(content);
         board.setCreateDate(LocalDateTime.now());
+        board.setItemName(itemName);
         return board;
     }
 
