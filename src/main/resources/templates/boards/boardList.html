@@ -34,13 +34,13 @@
         </table>
 
         <div class = "page-item" style="text-align: center">
-            <a href="#" id="before" th:if="${page > 5}" th:text="'<'" th:href="@{/boards (category=${param.category[0]}, page=${page - 5})}"></a>
+            <a href="#" id="before" th:if="${page > 1}" th:text="'<'" th:href="@{/boards (category=${param.category[0]}, page=${page - 1})}"></a>
             <a href="#" id="1" th:text="${page}" th:href="@{/boards (category=${param.category[0]}, page=${page})}"></a>
-            <a href="#" id="2" th:if="${page * 10 < size}" th:text="${page + 1}" th:href="@{/boards (category=${param.category[0]}, page=${page + 1})}"></a>
-            <a href="#" id="3" th:if="${(page+1) * 10 < size}" th:text="${page + 2}" th:href="@{/boards (category=${param.category[0]}, page=${page + 2})}"></a>
-            <a href="#" id="4" th:if="${(page+2) * 10 < size}" th:text="${page + 3}" th:href="@{/boards (category=${param.category[0]}, page=${page + 3})}"></a>
-            <a href="#" id="5" th:if="${(page+3) * 10 < size}" th:text="${page + 4}" th:href="@{/boards (category=${param.category[0]}, page=${page + 4})}"></a>
-            <a href="#" id="after" th:if="${(page+4) * 10 < size}" th:text="'>'" th:href="@{/boards (category=${param.category[0]}, page=${page + 5})}"></a>
+            <a href="#" id="2" th:if="${(page) * 10 < size}" th:text="${page + 1}" th:href="@{/boards (category=${param.category[0]}, page=${page + 1})}"></a>
+            <a href="#" id="3" th:if="${(page + 1) * 10 < size}" th:text="${page + 2}" th:href="@{/boards (category=${param.category[0]}, page=${page + 2})}"></a>
+            <a href="#" id="4" th:if="${(page + 2) * 10 < size}" th:text="${page + 3}" th:href="@{/boards (category=${param.category[0]}, page=${page + 3})}"></a>
+            <a href="#" id="5" th:if="${(page + 3) * 10 < size}" th:text="${page + 4}" th:href="@{/boards (category=${param.category[0]}, page=${page + 4})}"></a>
+            <a href="#" id="after" th:if="${page * 10 < size}" th:text="'>'" th:href="@{/boards (category=${param.category[0]}, page=${page + 1})}"></a>
         </div>
 
     </div>
