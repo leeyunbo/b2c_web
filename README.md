@@ -6,6 +6,7 @@
 * h2-database 
 * thyme-leaf 
 * gradle
+* FE
 
 ## 기능 
 ### 1. 회원 기능 (MemberService)
@@ -72,12 +73,12 @@
 <br/>
   
 ## 테이블 설계 
-<img width="904" alt="스크린샷 2021-01-28 오후 9 57 47" src="https://user-images.githubusercontent.com/44944031/106141731-e8efc500-61b3-11eb-882d-01c1ab920885.png">
+<img width="904" alt="스크린샷 2021-01-28 오후 9 57 47" src="https://user-images.githubusercontent.com/44944031/106141731-e8efc500-61b3-11eb-882d-01c1ab920885.png">
 
 <br/>
 
 ## 애플리케이션 아키텍처 
-![스크린샷 2021-02-05 오후 11 39 01](https://user-images.githubusercontent.com/44944031/107047661-6a2a0600-680b-11eb-9306-53c2845a18ca.png)
+![스크린샷 2021-02-05 오후 11 39 01](https://user-images.githubusercontent.com/44944031/107047661-6a2a0600-680b-11eb-9306-53c2845a18ca.png)
 1. controller, web : 웹 계층
 2. service : 비즈니스 로직, 트랜잭션 처리 
 3. repository : JPA를 직접 사용하는 계층, 엔티티 매니저 사용 
