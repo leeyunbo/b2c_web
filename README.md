@@ -1,9 +1,9 @@
-# c2c 쇼핑몰 개발 
+# 중고마켓 서비스 개발 
 
 ## 기술 스택 
 * spring-boot
 * jpa-hibernate
-* h2-database 
+* mysql
 * thyme-leaf 
 * gradle
 
